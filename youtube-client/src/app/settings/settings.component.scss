@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  //width: 5.8%;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__settings {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  background-color: #2F80ED;
+  border: none;
+  border-radius: 5px;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
+}
+
+.header__settings:hover {
+  filter: unset;
+}
+
+.header__settings-img {
+  width: 24px;
+}

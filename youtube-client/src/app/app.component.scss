@@ -1,8 +1,8 @@
-.container {
-  width: 100%;
+:host {
   background-color: #FFFFFF;
 }
 
 .page {
   max-width: 1440px;
+  margin: 0 auto;
 }
