@@ -1,0 +1,37 @@
+:host {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.header__sorting-block {
+  display: flex;
+  flex-direction: row;
+  min-width: 470px;
+  justify-content: space-between;
+}
+
+.header__sorting-label,
+.header__sort-date,
+.header__sort-count,
+.header__sort-word,
+.header__sort-input {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.7em;
+  line-height: 14px;
+  color: #929292;
+}
+
+.header__sort-date,
+.header__sort-count,
+.header__sort-word {
+  text-decoration-line: underline;
+  color: #2F80ED;
+}
+
+.header__sort-input {}

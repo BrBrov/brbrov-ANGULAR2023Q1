@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent {
-
+  private value = false;
+  @Output() mode = new EventEmitter<boolean>();
+  public listen(): void {
+    this.value = !this.value;
+    this.mode.emit(this.value);
+  }
 }
