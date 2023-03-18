@@ -1,5 +1,6 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +9,8 @@ import { SearchComponent } from './search/search.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { SortingBlockComponent } from './sorting-block/sorting-block.component';
+import { MainComponent } from './main/main.component';
+import {LoadDataService} from './load-data.service';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,15 @@ import { SortingBlockComponent } from './sorting-block/sorting-block.component';
     SearchComponent,
     SettingsComponent,
     LoginComponent,
-    SortingBlockComponent
+    SortingBlockComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoadDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
