@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { SortingBlockComponent } from './sorting-block/sorting-block.component';
 import { MainComponent } from './main/main.component';
 import {LoadDataService} from './load-data.service';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {LoadDataService} from './load-data.service';
     SettingsComponent,
     LoginComponent,
     SortingBlockComponent,
-    MainComponent
+    MainComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

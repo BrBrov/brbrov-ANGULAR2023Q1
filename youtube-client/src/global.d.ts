@@ -18,7 +18,7 @@ declare global {
     "kind": string,
     "etag": string,
     "id": string,
-    "snippet": SnippetData[],
+    "snippet": SnippetData,
     "statistics": Statistics
   }
 
@@ -27,7 +27,7 @@ declare global {
     "channelId": string,
     "title": string,
     "description": string,
-    "thumbnails": Array<Thumbnails>,
+    "thumbnails": Thumbnails,
     "channelTitle": string,
     "tags": string[],
     "categoryId": string,
@@ -37,7 +37,11 @@ declare global {
   }
 
   type Thumbnails = {
-      "default": Array<Thumbnail>
+    "default": Thumbnail,
+    "medium": Thumbnail,
+    "high": Thumbnail,
+    "standard": Thumbnail,
+    "maxres": Thumbnail
   }
 
   type Thumbnail = {
