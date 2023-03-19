@@ -16,7 +16,9 @@ export class MainComponent implements OnInit{
   constructor(private service: LoadDataService) {}
 
   ngOnInit(): void {
-    this.service.request.get('../../assets/response.json').subscribe((response) => {
+    //TODO: url for JSON:
+    //../../assets/response.json
+    this.service.request.get('https://raw.githubusercontent.com/rolling-scopes-school/brbrov-ANGULAR2023Q1/gh-pages/assets/response.json?token=GHSAT0AAAAAACAAXOLFU7SCGKMADVOERPFKZAXPJKQ').subscribe((response) => {
       this.data = response as ResponseData;
       let count = 1;
       this.data.items.forEach((item: DataItem) => {
