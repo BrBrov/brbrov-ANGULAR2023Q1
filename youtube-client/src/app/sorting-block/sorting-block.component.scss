@@ -34,4 +34,9 @@
   color: #2F80ED;
 }
 
-.header__sort-input {}
+.header__sort-input {
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  padding-left: 3px;
+}

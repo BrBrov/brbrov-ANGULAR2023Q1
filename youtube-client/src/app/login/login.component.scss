@@ -25,6 +25,11 @@
   border: none;
   border-radius: 5px;
   filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
+  cursor: pointer;
+}
+
+.header__login-button:hover {
+ filter: unset;
 }
 
 .header__login-img {

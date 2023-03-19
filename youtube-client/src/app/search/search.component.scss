@@ -34,16 +34,17 @@
   border: none;
   outline: none;
   color: #929292;
+  background-color: #EFEFEF;
 }
 
 .header__search-button {
   min-width: 35px;
-  //width: 16.81%;
   width: 80px;
   border: none;
   border-radius: 0 5px 5px 0;
   background-color: #2F80ED;
   filter: drop-shadow(2px 0px 4px #2F80ED);
+  cursor: pointer;
 }
 
 .header__search-button:hover {
