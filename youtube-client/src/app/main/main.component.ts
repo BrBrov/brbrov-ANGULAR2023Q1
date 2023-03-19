@@ -19,7 +19,6 @@ export class MainComponent implements OnInit{
     this.service.request.get('../../assets/response.json').subscribe((response) => {
       this.data = response as ResponseData;
       let count = 1;
-      console.log(this.data.items);
       this.data.items.forEach((item: DataItem) => {
         const card = this.container.createComponent(CardComponent);
         switch(count) {
@@ -43,9 +42,10 @@ export class MainComponent implements OnInit{
             break;
         }
         count += 1;
-        card.instance.title = item.snippet.channelTitle;
+        card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
         card.instance.imgRef = item.snippet.thumbnails.standard.url;
-      });
+        card.instance.statistic = item.statistics;
+        });
     });
   }
 }

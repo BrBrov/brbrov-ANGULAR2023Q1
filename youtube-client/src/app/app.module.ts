@@ -12,6 +12,7 @@ import { SortingBlockComponent } from './sorting-block/sorting-block.component';
 import { MainComponent } from './main/main.component';
 import {LoadDataService} from './load-data.service';
 import { CardComponent } from './card/card.component';
+import { SocialComponent } from './social/social.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CardComponent } from './card/card.component';
     LoginComponent,
     SortingBlockComponent,
     MainComponent,
-    CardComponent
+    CardComponent,
+    SocialComponent
   ],
   imports: [
     BrowserModule,
