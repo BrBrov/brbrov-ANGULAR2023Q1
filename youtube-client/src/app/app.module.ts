@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import {LoadDataService} from './load-data.service';
 import { CardComponent } from './card/card.component';
 import { SocialComponent } from './social/social.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SocialComponent } from './social/social.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [LoadDataService],
   bootstrap: [AppComponent]
