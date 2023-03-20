@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {LoadDataService} from '../load-data.service';
 import {CardComponent} from '../card/card.component';
 
@@ -7,23 +7,19 @@ import {CardComponent} from '../card/card.component';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit{
+export class MainComponent {
   public data: ResponseData;
   private colors: Array<string> = ['#2F80ED', '#27AE60', '#EB5757', '#F2C94C'];
 
   @ViewChild('wrapper', {read: ViewContainerRef}) container: ViewContainerRef;
 
-  constructor(private service: LoadDataService) {}
-
-  ngOnInit(): void {
-    //TODO: url for JSON:
-    //../../assets/response.json
-    this.service.request.get('https://raw.githubusercontent.com/rolling-scopes-school/brbrov-ANGULAR2023Q1/gh-pages/assets/response.json?token=GHSAT0AAAAAACAAXOLFU7SCGKMADVOERPFKZAXPJKQ').subscribe((response) => {
+  constructor(private service: LoadDataService) {
+    this.service.request.get('../../assets/response.json').subscribe((response) => {
       this.data = response as ResponseData;
       let count = 1;
       this.data.items.forEach((item: DataItem) => {
         const card = this.container.createComponent(CardComponent);
-        switch(count) {
+        switch (count) {
           case 0:
           case 1:
           case 2:
@@ -47,7 +43,8 @@ export class MainComponent implements OnInit{
         card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
         card.instance.imgRef = item.snippet.thumbnails.standard.url;
         card.instance.statistic = item.statistics;
-        });
+        card.instance.setData();
+      });
     });
   }
 }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import {SocialComponent} from '../social/social.component';
 
 @Component({
@@ -6,16 +6,17 @@ import {SocialComponent} from '../social/social.component';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements AfterViewInit{
+export class CardComponent {
   public title = 'Video';
   public colorBottom = '#FFFFF';
   public imgRef: string = '';
   public statistic: Statistics;
   @ViewChild(SocialComponent) social: SocialComponent;
-  ngAfterViewInit(): void {
-    this.social.viewCount = Number(this.statistic.viewCount);
-    this.social.likes = Number(this.statistic.likeCount);
-    this.social.dislikes = Number(this.statistic.dislikeCount);
-    this.social.comments = Number(this.statistic.commentCount);
+  constructor() {
+    this.social = new SocialComponent();
+  }
+
+  public setData(): void {
+    this.social.setData(this.statistic);
   }
 }

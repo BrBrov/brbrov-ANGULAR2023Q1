@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-social',
@@ -6,8 +6,15 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./social.component.scss']
 })
 export class SocialComponent {
-  @Input() viewCount: number = 0;
-  @Input() likes: number = 0;
-  @Input() dislikes: number = 0;
-  @Input() comments: number = 0;
+  public viewCount: number;
+  public likes: number;
+  public dislikes: number;
+  public comments: number;
+
+  setData(statistic: Statistics): void {
+    this.viewCount = Number(statistic.viewCount);
+    this.likes = Number(statistic.likeCount);
+    this.dislikes = Number(statistic.dislikeCount);
+    this.comments = Number(statistic.commentCount);
+  }
 }
