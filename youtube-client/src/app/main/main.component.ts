@@ -19,6 +19,7 @@ export class MainComponent implements OnInit{
   public enterSearch(value: string): void {
     console.log(value);
     //TODO: add filter logic for search
+    this.container.clear();
     this.addCards();
   }
   private addCards(): void {
@@ -37,7 +38,6 @@ export class MainComponent implements OnInit{
   ngOnInit(): void {
     this.service.getData().subscribe((response: Object): void => {
       this.data = <ResponseData>response;
-      // this.addCards();
     })
   }
 }
