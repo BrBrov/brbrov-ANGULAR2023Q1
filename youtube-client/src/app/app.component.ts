@@ -1,8 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {MainComponent} from './main/main.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  @ViewChild(MainComponent) mainBlock: MainComponent;
+  public onInputSearchParam(ev: string): void {
+    this.mainBlock.enterSearch(ev);
+  }
+}

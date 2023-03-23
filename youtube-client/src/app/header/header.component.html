@@ -4,7 +4,7 @@
     <div class="header__logo">
       <img class="header__logo-img" src="./assets/logo.svg" alt="logo">
     </div>
-    <app-search></app-search>
+    <app-search (searchEvent)="searchSender($event)"></app-search>
     <app-settings (mode)="showSettings($event)"></app-settings>
   </div>
   <div class="header__right">

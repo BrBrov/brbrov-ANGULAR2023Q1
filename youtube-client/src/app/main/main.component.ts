@@ -1,50 +1,43 @@
-import { Component, ViewChild, ViewContainerRef} from '@angular/core';
-import {LoadDataService} from '../load-data.service';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {LoadDataService} from './load-data.service';
 import {CardComponent} from '../card/card.component';
+import {DateComparsionService} from './date-comparsion.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  providers: [LoadDataService, DateComparsionService]
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
   public data: ResponseData;
-  private colors: Array<string> = ['#2F80ED', '#27AE60', '#EB5757', '#F2C94C'];
 
   @ViewChild('wrapper', {read: ViewContainerRef}) container: ViewContainerRef;
 
-  constructor(private service: LoadDataService) {
-    this.service.request.get('../../assets/response.json').subscribe((response) => {
-      this.data = response as ResponseData;
-      let count = 1;
-      this.data.items.forEach((item: DataItem) => {
-        const card = this.container.createComponent(CardComponent);
-        switch (count) {
-          case 0:
-          case 1:
-          case 2:
-            card.instance.colorBottom = this.colors[0];
-            break;
-          case 3:
-            card.instance.colorBottom = this.colors[1];
-            break;
-          case 4:
-            card.instance.colorBottom = this.colors[2];
-            break;
-          case 5:
-            card.instance.colorBottom = this.colors[3];
-            break;
-          default:
-            count = 0;
-            card.instance.colorBottom = this.colors[0];
-            break;
-        }
-        count += 1;
-        card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
-        card.instance.imgRef = item.snippet.thumbnails.standard.url;
-        card.instance.statistic = item.statistics;
-        card.instance.setData();
-      });
+  constructor(private service: LoadDataService, private comparsion: DateComparsionService) {}
+
+  public enterSearch(value: string): void {
+    console.log(value);
+    //TODO: add filter logic for search
+    this.addCards();
+  }
+  private addCards(): void {
+   const timeNow = new Date().toString();
+    this.data.items.forEach((item: DataItem) => {
+      const card = this.container.createComponent(CardComponent);
+
+      card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
+      card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
+      card.instance.imgRef = item.snippet.thumbnails.standard.url;
+      card.instance.statistic = item.statistics;
+      card.instance.setData();
     });
+  }
+
+  ngOnInit(): void {
+    this.service.getData().subscribe((response: Object): void => {
+      this.data = <ResponseData>response;
+      // this.addCards();
+    })
   }
 }

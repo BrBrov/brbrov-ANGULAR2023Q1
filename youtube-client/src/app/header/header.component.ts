@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -21,7 +21,13 @@ import {animate, style, transition, trigger} from '@angular/animations';
 export class HeaderComponent{
   public settings: boolean = false;
 
-  showSettings(ev: boolean): void {
+  @Output() sendSearchParam = new EventEmitter<string>();
+
+  public showSettings(ev: boolean): void {
     this.settings = ev;
   }
+  public searchSender(ev: string): void {
+    this.sendSearchParam.emit(ev);
+  }
+
 }

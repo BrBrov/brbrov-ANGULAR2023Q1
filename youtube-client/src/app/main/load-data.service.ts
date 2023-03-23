@@ -4,8 +4,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class LoadDataService {
-  public request: HttpClient;
-  constructor(private httpClient: HttpClient) {
-    this.request = httpClient;
+  constructor(private httpClient: HttpClient) {}
+
+  public getData() {
+    return this.httpClient.get('../../assets/response.json');
   }
 }

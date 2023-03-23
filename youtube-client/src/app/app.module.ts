@@ -10,10 +10,10 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { SortingBlockComponent } from './sorting-block/sorting-block.component';
 import { MainComponent } from './main/main.component';
-import {LoadDataService} from './load-data.service';
 import { CardComponent } from './card/card.component';
 import { SocialComponent } from './social/social.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,9 +31,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
-  providers: [LoadDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
