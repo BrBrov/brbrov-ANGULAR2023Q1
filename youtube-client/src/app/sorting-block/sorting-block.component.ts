@@ -6,6 +6,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./sorting-block.component.scss']
 })
 export class SortingBlockComponent {
+	
   private mode: boolean | string = 'null';
 
   private typeMode: string = '';
@@ -29,7 +30,7 @@ export class SortingBlockComponent {
 
   private setMode(type: string): void {
     if (this.typeMode !== type) {
-      this.mode = 'null';
+      this.mode = true;
       this.typeMode = type;
       return;
     }

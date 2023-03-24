@@ -21,7 +21,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
 export class HeaderComponent{
   public settings: boolean = false;
 
-  @Output() sendSearchParam = new EventEmitter<EventData>();
+  @Output() sendSearchParam = new EventEmitter<EventData>(true);
 
   public showSettings(ev: boolean): void {
     this.settings = ev;
