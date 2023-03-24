@@ -31,6 +31,12 @@
 .header__sort-count {
   text-decoration-line: underline;
   color: #2F80ED;
+  cursor: pointer;
+}
+
+.header__sort-date:active,
+.header__sort-count:active {
+  color: #7b2fed;
 }
 .header__sort-word {
   text-decoration-line: none;

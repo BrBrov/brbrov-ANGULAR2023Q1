@@ -1,7 +1,10 @@
 <div class="header__sorting-block">
   <span class="header__sorting-label">Sorting by:</span>
-  <a href="#" class="header__sort-date">date</a>
-  <a href="#" class="header__sort-count">count of views</a>
-  <a href="#" class="header__sort-word">by word or sentance</a>
-  <input class="header__sort-input" type="text">
+  <span class="header__sort-date" (click)="onSortDate()">date</span>
+  <span class="header__sort-count" (click)="onSortView()">count of views</span>
+  <span class="header__sort-word">by word or sentance</span>
+  <input class="header__sort-input" type="text"
+         [(ngModel)]="sortString"
+         (blur)="onSortingWord()"
+         (keyup.enter)="onSortingWord()">
 </div>

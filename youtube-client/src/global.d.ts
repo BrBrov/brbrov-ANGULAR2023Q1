@@ -62,4 +62,9 @@ declare global {
     "favoriteCount": string,
     "commentCount": string
   }
+
+  type EventData = {
+    'type': string;
+    'mode': boolean | string ;
+  }
 }

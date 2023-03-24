@@ -21,13 +21,16 @@ import {animate, style, transition, trigger} from '@angular/animations';
 export class HeaderComponent{
   public settings: boolean = false;
 
-  @Output() sendSearchParam = new EventEmitter<string>();
+  @Output() sendSearchParam = new EventEmitter<EventData>();
 
   public showSettings(ev: boolean): void {
     this.settings = ev;
   }
-  public searchSender(ev: string): void {
+  public searchSender(ev: EventData): void {
     this.sendSearchParam.emit(ev);
   }
 
+  public sorterPipe(ev: EventData): void {
+    this.sendSearchParam.emit(ev);
+  }
 }

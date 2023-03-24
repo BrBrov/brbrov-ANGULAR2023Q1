@@ -14,6 +14,7 @@ import { CardComponent } from './card/card.component';
 import { SocialComponent } from './social/social.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from '@angular/forms';
     SortingBlockComponent,
     MainComponent,
     CardComponent,
-    SocialComponent
+    SocialComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,6 @@ import {FormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

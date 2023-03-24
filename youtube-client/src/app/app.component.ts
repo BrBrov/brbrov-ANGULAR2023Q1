@@ -8,7 +8,7 @@ import {MainComponent} from './main/main.component';
 })
 export class AppComponent {
   @ViewChild(MainComponent) mainBlock: MainComponent;
-  public onInputSearchParam(ev: string): void {
+  public onInputSearchParam(ev: EventData): void {
     this.mainBlock.enterSearch(ev);
   }
 }

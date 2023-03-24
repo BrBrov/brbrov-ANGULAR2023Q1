@@ -2,29 +2,66 @@ import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {LoadDataService} from './load-data.service';
 import {CardComponent} from '../card/card.component';
 import {DateComparsionService} from './date-comparsion.service';
+import {DateSortingService} from './date-sorting.service';
+import {NotFoundComponent} from '../not-found/not-found.component';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
-  providers: [LoadDataService, DateComparsionService]
+  providers: [LoadDataService, DateComparsionService, DateSortingService]
 })
-export class MainComponent implements OnInit{
-  public data: ResponseData;
+export class MainComponent implements OnInit {
+  private data: ResponseData;
+
+  private searchString: string | boolean = '';
+
+  private isShowCards: boolean = false;
 
   @ViewChild('wrapper', {read: ViewContainerRef}) container: ViewContainerRef;
 
-  constructor(private service: LoadDataService, private comparsion: DateComparsionService) {}
+  constructor(private service: LoadDataService,
+              private comparsion: DateComparsionService,
+              private dateSorting: DateSortingService) {}
 
-  public enterSearch(value: string): void {
+  public enterSearch(value: EventData): void {
     console.log(value);
-    //TODO: add filter logic for search
-    this.container.clear();
-    this.addCards();
+    if (value.type === 'search') {
+      if (!this.isShowCards) {
+        this.isShowCards = true;
+        this.searchString = value.mode;
+        this.showCards(this.data);
+      }
+      return;
+    }
+    if (value.type === 'date') {
+      if (!this.isShowCards) {
+        this.showNotFound();
+      } else {
+        this.sortByDate(value.mode);
+      }
+    }
   }
-  private addCards(): void {
-   const timeNow = new Date().toString();
-    this.data.items.forEach((item: DataItem) => {
+
+  public sortByDate(mode: boolean | string ): void {
+    if (mode === 'null') {
+      this.service.getData().subscribe((response: Object) => {
+        this.data = <ResponseData>response;
+        this.showCards(this.data);
+      });
+    } else {
+      this.showCards(this.dateSorting.sortData(this.data, mode));
+    }
+  }
+
+  private showCards(data: ResponseData): void {
+    this.container.clear();
+    this.addCards(data);
+  }
+
+  private addCards(data: ResponseData): void {
+    const timeNow = new Date().toString();
+    data.items.forEach((item: DataItem) => {
       const card = this.container.createComponent(CardComponent);
 
       card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
@@ -33,6 +70,10 @@ export class MainComponent implements OnInit{
       card.instance.statistic = item.statistics;
       card.instance.setData();
     });
+  }
+
+  private showNotFound(): void {
+    this.container.createComponent(NotFoundComponent);
   }
 
   ngOnInit(): void {

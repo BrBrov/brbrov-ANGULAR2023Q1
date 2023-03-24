@@ -8,9 +8,9 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class SearchComponent {
   public placeholder = 'What are you want to find out?';
   public valueSearch: string = '';
-  @Output() searchEvent = new EventEmitter<string>();
+  @Output() searchEvent = new EventEmitter<EventData>();
 
   public onClick(): void {
-    this.searchEvent.emit(this.valueSearch);
+    this.searchEvent.emit({type: 'search', mode: this.valueSearch});
   }
 }
