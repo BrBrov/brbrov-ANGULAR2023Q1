@@ -11,5 +11,5 @@
     <app-login></app-login>
   </div>
 </div>
-<app-sorting-block @showSettings *ngIf="settings" (sendSort)="sorterPipe($event)"></app-sorting-block>
+<app-sorting-block (sendSort)="sorterPipe($event)" @showSettings *ngIf="settings"></app-sorting-block>
 

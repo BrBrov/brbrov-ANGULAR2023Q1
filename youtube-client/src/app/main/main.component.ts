@@ -73,6 +73,7 @@ export class MainComponent implements OnInit {
   }
 
   private showNotFound(): void {
+    this.container.clear();
     this.container.createComponent(NotFoundComponent);
   }
 
