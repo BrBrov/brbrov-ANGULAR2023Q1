@@ -5,6 +5,7 @@ import {DateComparsionService} from './date-comparsion.service';
 import {DateSortingService} from './date-sorting.service';
 import {NotFoundComponent} from '../not-found/not-found.component';
 import {CountSortingService} from './count-sorting.service';
+import {WordSortingService} from './word-sorting.service';
 
 @Component({
   selector: 'app-main',
@@ -15,7 +16,9 @@ import {CountSortingService} from './count-sorting.service';
 export class MainComponent implements OnInit {
   private data: ResponseData;
 
-  private searchString: string | boolean = '';
+  private searchString: string = '';
+
+  private sortString: string = '';
 
   private isShowCards: boolean = false;
 
@@ -24,27 +27,42 @@ export class MainComponent implements OnInit {
   constructor(private service: LoadDataService,
               private comparsion: DateComparsionService,
               private dateSorting: DateSortingService,
-              private countSorting: CountSortingService) {}
+              private countSorting: CountSortingService,
+              private wordSorting: WordSortingService) {}
 
   public enterSearch(value: EventData): void {
     console.log(value);
     if (value.type === 'search') {
+      this.searchString = value.mode as string;
       if (!this.isShowCards) {
         this.isShowCards = true;
-        this.searchString = value.mode;
         this.showCards(this.data);
       }
       return;
     }
-    if (value.type === 'date' || value.type === 'view') {
+    if (value.type === 'date' || value.type === 'view' || value.type === 'word') {
       if (!this.isShowCards) {
         this.showNotFound();
       } else if (value.type === 'date') {
         this.sortByDate(value.mode);
       } else if (value.type === 'view') {
         this.sortByCount(value.mode);
+      } else if (value.type === 'word') {
+        this.sortString = value.mode as string;
+        this.sortByWord(this.sortString);
       }
       return;
+    }
+  }
+
+  private sortByWord(mode: string): void {
+    if (!mode) {
+      this.service.getData().subscribe((response: Object) => {
+        this.data = <ResponseData>response;
+        this.showCards(this.data);
+      });
+    } else {
+      this.showCards(this.wordSorting.sortData(this.data, mode));
     }
   }
 
@@ -81,7 +99,7 @@ export class MainComponent implements OnInit {
       const card = this.container.createComponent(CardComponent);
       card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
       card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
-      card.instance.imgRef = item.snippet.thumbnails.standard.url;
+      card.instance.imgRef = item.snippet.thumbnails.high.url;
       card.instance.statistic = item.statistics;
       card.instance.setData();
     });

@@ -2,9 +2,8 @@
   <span class="header__sorting-label">Sorting by:</span>
   <app-button-date (sendEmitDate)="onSortDate()"></app-button-date>
   <app-button-view (sendEmitView)="onSortView()"></app-button-view>
-  <span class="header__sort-word">by word or sentance</span>
+  <span class="header__sort-word" on-click="onSortingWord()">by word or sentance</span>
   <input class="header__sort-input" type="text"
          [(ngModel)]="sortString"
-         (blur)="onSortingWord()"
          (keyup.enter)="onSortingWord()">
 </div>
