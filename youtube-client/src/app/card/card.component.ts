@@ -1,5 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
-import {SocialComponent} from '../social/social.component';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -10,13 +9,16 @@ export class CardComponent {
   public title = 'Video';
   public colorBottom = '#FFFFF';
   public imgRef: string = '';
+  public viewCount: string = '0';
+  public likes: string = '0';
+  public dislikes: string = '0';
+  public comments: string = '0';
   public statistic: Statistics;
-  @ViewChild(SocialComponent) social: SocialComponent;
-  constructor() {
-    this.social = new SocialComponent();
-  }
 
-  public setData(): void {
-    this.social.setData(this.statistic);
+  public setData() {
+    this.viewCount = this.statistic.viewCount;
+    this.likes = this.statistic.likeCount;
+    this.dislikes = this.statistic.dislikeCount;
+    this.comments = this.statistic.commentCount;
   }
 }

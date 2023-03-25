@@ -1,0 +1,22 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.header__sort-count {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.7em;
+  line-height: 14px;
+  text-decoration-line: underline;
+  color: #2F80ED;
+  cursor: pointer;
+}
+
+.header__sort-count:active {
+  text-decoration-line: underline;
+  color: #710ab0;
+}

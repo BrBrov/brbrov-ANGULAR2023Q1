@@ -1,7 +1,7 @@
 <div class="header__sorting-block">
   <span class="header__sorting-label">Sorting by:</span>
-  <span class="header__sort-date" (click)="onSortDate()">date</span>
-  <span class="header__sort-count" (click)="onSortView()">count of views</span>
+  <app-button-date (sendEmitDate)="onSortDate()"></app-button-date>
+  <app-button-view (sendEmitView)="onSortView()"></app-button-view>
   <span class="header__sort-word">by word or sentance</span>
   <input class="header__sort-input" type="text"
          [(ngModel)]="sortString"

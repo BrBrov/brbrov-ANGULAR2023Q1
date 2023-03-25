@@ -1,4 +1,4 @@
-import {Inject, Injectable, LOCALE_ID} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 enum Periods {
   HalfYear = 15778800,
@@ -11,7 +11,6 @@ enum Periods {
 })
 export class DateComparsionService {
   private colors: Array<string> = ['#2F80ED', '#27AE60', '#EB5757', '#F2C94C'];
-  constructor(@Inject(LOCALE_ID) private locale: string) {}
 
   public comparsionDate(dateNow: string, datePublish: string): string {
     const now = Date.parse(dateNow);

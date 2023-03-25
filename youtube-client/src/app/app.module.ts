@@ -11,10 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { SortingBlockComponent } from './sorting-block/sorting-block.component';
 import { MainComponent } from './main/main.component';
 import { CardComponent } from './card/card.component';
-import { SocialComponent } from './social/social.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ButtonDateComponent } from './button-date/button-date.component';
+import { ButtonViewComponent } from './button-view/button-view.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SortingBlockComponent,
     MainComponent,
     CardComponent,
-    SocialComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ButtonDateComponent,
+    ButtonViewComponent
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./sorting-block.component.scss']
 })
 export class SortingBlockComponent {
-	
+
   private mode: boolean | string = 'null';
 
   private typeMode: string = '';
