@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sorting-block',
@@ -9,11 +9,12 @@ export class SortingBlockComponent {
 
   private mode: boolean | string = 'null';
 
-  private typeMode: string = '';
+  private typeMode = '';
 
-  public sortString: string = '';
+  public sortString = '';
 
   @Output() sendSort = new EventEmitter<EventData>();
+
   public onSortDate(): void {
     this.setMode('date');
   }
@@ -34,7 +35,7 @@ export class SortingBlockComponent {
       this.typeMode = type;
       return;
     }
-    switch(this.mode) {
+    switch (this.mode) {
       case 'null':
         this.mode = true;
         break;
@@ -49,6 +50,6 @@ export class SortingBlockComponent {
   }
 
   private send(): void {
-    this.sendSort.emit({type: this.typeMode, mode: this.mode});
+    this.sendSort.emit({ type: this.typeMode, mode: this.mode });
   }
 }

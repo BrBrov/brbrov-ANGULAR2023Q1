@@ -1,11 +1,11 @@
-import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {LoadDataService} from './load-data.service';
-import {CardComponent} from '../card/card.component';
-import {DateComparsionService} from './date-comparsion.service';
-import {DateSortingService} from './date-sorting.service';
-import {NotFoundComponent} from '../not-found/not-found.component';
-import {CountSortingService} from './count-sorting.service';
-import {WordSortingService} from './word-sorting.service';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { LoadDataService } from './load-data.service';
+import { CardComponent } from '../card/card.component';
+import { DateComparsionService } from './date-comparsion.service';
+import { DateSortingService } from './date-sorting.service';
+import { NotFoundComponent } from '../not-found/not-found.component';
+import { CountSortingService } from './count-sorting.service';
+import { WordSortingService } from './word-sorting.service';
 
 @Component({
   selector: 'app-main',
@@ -16,19 +16,25 @@ import {WordSortingService} from './word-sorting.service';
 export class MainComponent implements OnInit {
   private data: ResponseData;
 
-  private searchString: string = '';
+  private searchString = '';
 
-  private sortString: string = '';
+  private sortString = '';
 
-  private isShowCards: boolean = false;
+  private isShowCards = false;
 
-  @ViewChild('wrapper', {read: ViewContainerRef}) container: ViewContainerRef;
+  @ViewChild('wrapper', { read: ViewContainerRef }) container: ViewContainerRef;
 
   constructor(private service: LoadDataService,
-              private comparsion: DateComparsionService,
-              private dateSorting: DateSortingService,
-              private countSorting: CountSortingService,
-              private wordSorting: WordSortingService) {}
+    private comparsion: DateComparsionService,
+    private dateSorting: DateSortingService,
+    private countSorting: CountSortingService,
+    private wordSorting: WordSortingService) {}
+
+  ngOnInit(): void {
+    this.service.getData().subscribe((response): void => {
+      this.data = <ResponseData>response;
+    });
+  }
 
   public enterSearch(value: EventData): void {
     console.log(value);
@@ -57,7 +63,7 @@ export class MainComponent implements OnInit {
 
   private sortByWord(mode: string): void {
     if (!mode) {
-      this.service.getData().subscribe((response: Object) => {
+      this.service.getData().subscribe((response) => {
         this.data = <ResponseData>response;
         this.showCards(this.data);
       });
@@ -68,7 +74,7 @@ export class MainComponent implements OnInit {
 
   private sortByDate(mode: boolean | string ): void {
     if (mode === 'null') {
-      this.service.getData().subscribe((response: Object) => {
+      this.service.getData().subscribe((response) => {
         this.data = <ResponseData>response;
         this.showCards(this.data);
       });
@@ -79,7 +85,7 @@ export class MainComponent implements OnInit {
 
   private sortByCount(mode: boolean | string): void {
     if (mode === 'null') {
-      this.service.getData().subscribe((response: Object) => {
+      this.service.getData().subscribe((response) => {
         this.data = <ResponseData>response;
         this.showCards(this.data);
       });
@@ -108,11 +114,5 @@ export class MainComponent implements OnInit {
   private showNotFound(): void {
     this.container.clear();
     this.container.createComponent(NotFoundComponent);
-  }
-
-  ngOnInit(): void {
-    this.service.getData().subscribe((response: Object): void => {
-      this.data = <ResponseData>response;
-    })
   }
 }

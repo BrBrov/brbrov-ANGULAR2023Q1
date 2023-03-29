@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button-view',
@@ -7,6 +7,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class ButtonViewComponent {
   @Output() sendEmitView = new EventEmitter<unknown>();
+
   public onSortView(): void {
     this.sendEmitView.emit();
   }

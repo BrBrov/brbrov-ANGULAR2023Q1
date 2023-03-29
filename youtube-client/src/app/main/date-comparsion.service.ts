@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 enum Periods {
   HalfYear = 15778800,
   Month = 2678400,
-  Week= 604800
+  Week = 604800
 }
 
 @Injectable({

@@ -10,7 +10,7 @@ describe('SearchComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SearchComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;

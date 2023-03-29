@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
 export class LoadDataService {
+
   constructor(private httpClient: HttpClient) {}
 
-  public getData() {
+  public getData(): Observable<object> {
     return this.httpClient.get('../../assets/response.json');
   }
+
+
 }

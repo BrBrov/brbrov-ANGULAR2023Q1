@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search',
@@ -7,10 +7,12 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class SearchComponent {
   public placeholder = 'What are you want to find out?';
-  public valueSearch: string = '';
+
+  public valueSearch = '';
+
   @Output() searchEvent = new EventEmitter<EventData>();
 
   public onClick(): void {
-    this.searchEvent.emit({type: 'search', mode: this.valueSearch});
+    this.searchEvent.emit({ type: 'search', mode: this.valueSearch });
   }
 }

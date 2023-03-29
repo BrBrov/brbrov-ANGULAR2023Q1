@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-button-date',
@@ -6,7 +6,8 @@ import {Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./button-date.component.scss']
 })
 export class ButtonDateComponent {
-  @Output() sendEmitDate = new EventEmitter<unknown>();
+  @Output() sendEmitDate: EventEmitter<void> = new EventEmitter<void>();
+
   public onSortDate(): void {
     this.sendEmitDate.emit();
   }

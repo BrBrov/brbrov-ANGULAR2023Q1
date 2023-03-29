@@ -10,7 +10,7 @@ describe('ButtonViewComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ButtonViewComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ButtonViewComponent);
     component = fixture.componentInstance;

@@ -10,7 +10,7 @@ describe('SortingBlockComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SortingBlockComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SortingBlockComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
-import {Component, ViewChild} from '@angular/core';
-import {MainComponent} from './main/main.component';
+import { Component, ViewChild } from '@angular/core';
+import { MainComponent } from './main/main.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,8 @@ import {MainComponent} from './main/main.component';
 })
 export class AppComponent {
   @ViewChild(MainComponent) mainBlock: MainComponent;
+
+
   public onInputSearchParam(ev: EventData): void {
     this.mainBlock.enterSearch(ev);
   }

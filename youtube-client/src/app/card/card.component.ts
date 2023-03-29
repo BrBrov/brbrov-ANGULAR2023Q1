@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -7,12 +7,19 @@ import {Component} from '@angular/core';
 })
 export class CardComponent {
   public title = 'Video';
+
   public colorBottom = '#FFFFF';
-  public imgRef: string = '';
-  public viewCount: string = '0';
-  public likes: string = '0';
-  public dislikes: string = '0';
-  public comments: string = '0';
+
+  public imgRef = '';
+
+  public viewCount = '0';
+
+  public likes = '0';
+
+  public dislikes = '0';
+
+  public comments = '0';
+
   public statistic: Statistics;
 
   public setData() {

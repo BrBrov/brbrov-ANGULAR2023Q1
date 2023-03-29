@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
@@ -7,7 +7,9 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class SettingsComponent {
   private value = false;
+
   @Output() mode = new EventEmitter<boolean>();
+
   public listen(): void {
     this.value = !this.value;
     this.mode.emit(this.value);
