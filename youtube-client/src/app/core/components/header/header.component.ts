@@ -30,8 +30,4 @@ export class HeaderComponent {
   public searchSender(ev: EventData): void {
     this.sendSearchParam.emit(ev);
   }
-
-  public sorterPipe(ev: EventData): void {
-    this.sendSearchParam.emit(ev);
-  }
 }

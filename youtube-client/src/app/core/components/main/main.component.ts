@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { LoadDataService } from './load-data.service';
-import { CardComponent } from '../card/card.component';
-import { DateComparsionService } from './date-comparsion.service';
-import { DateSortingService } from './date-sorting.service';
-import { NotFoundComponent } from '../not-found/not-found.component';
-import { CountSortingService } from './count-sorting.service';
-import { WordSortingService } from './word-sorting.service';
+import { LoadDataService } from '../../services/load-data.service';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { DateComparsionService } from '../../services/date-comparsion.service';
+import { DateSortingService } from '../../services/date-sorting.service';
+import { NotFoundComponent } from '../../pages/not-found/not-found.component';
+import { CountSortingService } from '../../services/count-sorting.service';
+import { WordSortingService } from '../../services/word-sorting.service';
+import { ClickSortingService } from '../../services/click-sorting.service';
 
 @Component({
   selector: 'app-main',
@@ -28,11 +29,13 @@ export class MainComponent implements OnInit {
     private comparsion: DateComparsionService,
     private dateSorting: DateSortingService,
     private countSorting: CountSortingService,
-    private wordSorting: WordSortingService) {}
+    private wordSorting: WordSortingService,
+    private clickSortMenu: ClickSortingService) {}
 
   ngOnInit(): void {
     this.service.getData().subscribe((response): void => {
       this.data = <ResponseData>response;
+      this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
     });
   }
 
@@ -72,7 +75,7 @@ export class MainComponent implements OnInit {
     }
   }
 
-  private sortByDate(mode: boolean | string ): void {
+  private sortByDate(mode: boolean | string): void {
     if (mode === 'null') {
       this.service.getData().subscribe((response) => {
         this.data = <ResponseData>response;

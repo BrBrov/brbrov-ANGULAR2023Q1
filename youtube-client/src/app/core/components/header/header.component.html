@@ -2,14 +2,14 @@
   <div class="header__left"></div>
   <div class="header__center">
     <div class="header__logo">
-      <img class="header__logo-img" src="./assets/logo.svg" alt="logo">
+      <img class="header__logo-img" src="../../../../assets/logo.svg" alt="logo">
     </div>
-    <app-search (searchEvent)="searchSender($event)"></app-search>
+    <app-search></app-search>
     <app-settings (mode)="showSettings($event)"></app-settings>
   </div>
   <div class="header__right">
     <app-login></app-login>
   </div>
 </div>
-<app-sorting-block (sendSort)="sorterPipe($event)" @showSettings *ngIf="settings"></app-sorting-block>
+<app-sorting-block @showSettings *ngIf="settings"></app-sorting-block>
 

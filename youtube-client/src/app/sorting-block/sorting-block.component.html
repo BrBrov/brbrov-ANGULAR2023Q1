@@ -1,9 +1,0 @@
-<div class="header__sorting-block">
-  <span class="header__sorting-label">Sorting by:</span>
-  <app-button-date (sendEmitDate)="onSortDate()"></app-button-date>
-  <app-button-view (sendEmitView)="onSortView()"></app-button-view>
-  <span class="header__sort-word" (click)="onSortingWord()">by word or sentance</span>
-  <input class="header__sort-input" type="text"
-         [(ngModel)]="sortString"
-         (keyup.enter)="onSortingWord()">
-</div>

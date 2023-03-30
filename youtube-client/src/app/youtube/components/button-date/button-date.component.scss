@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.header__sort-count {
+.header__sort-date {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -14,9 +14,10 @@
   text-decoration-line: underline;
   color: #2F80ED;
   cursor: pointer;
+  user-select: none;
 }
 
-.header__sort-count:active {
+.header__sort-date:active {
   text-decoration-line: underline;
   color: #710ab0;
 }

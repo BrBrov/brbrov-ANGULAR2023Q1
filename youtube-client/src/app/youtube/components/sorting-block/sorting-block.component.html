@@ -1,0 +1,10 @@
+<div class="header__sorting-block">
+  <span class="header__sorting-label">Sorting by:</span>
+  <app-button-date></app-button-date>
+  <app-button-view></app-button-view>
+  <span class="header__sort-word" (click)="onEnter()">by word or sentance</span>
+  <input class="header__sort-input" type="text"
+         [(ngModel)]="data.mode"
+         (blur)="onEnter()"
+         (keyup.enter)="onEnter()">
+</div>

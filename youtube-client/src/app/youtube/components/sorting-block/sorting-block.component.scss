@@ -29,6 +29,7 @@
   text-decoration-line: none;
   color: #2F80ED;
   cursor: pointer;
+  user-select: none;
 }
 
 .header__sort-word:active {

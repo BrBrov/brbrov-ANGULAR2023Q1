@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { ClickSortingService } from '../../../core/services/click-sorting.service';
 
 @Component({
   selector: 'app-search',
@@ -10,9 +11,10 @@ export class SearchComponent {
 
   public valueSearch = '';
 
-  @Output() searchEvent = new EventEmitter<EventData>();
+  constructor(private click: ClickSortingService) {
+  }
 
   public onClick(): void {
-    this.searchEvent.emit({ type: 'search', mode: this.valueSearch });
+    this.click.onSorting({ type: 'search', mode: this.valueSearch });
   }
 }
