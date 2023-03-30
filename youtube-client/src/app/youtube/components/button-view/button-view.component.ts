@@ -8,7 +8,7 @@ import { ClickSortingService } from '../../../core/services/click-sorting.servic
 })
 export class ButtonViewComponent {
   private data: EventData = {
-    type: 'date',
+    type: 'view',
     mode: 'null'
   };
 

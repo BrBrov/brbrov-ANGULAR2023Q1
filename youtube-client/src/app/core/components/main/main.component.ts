@@ -40,7 +40,7 @@ export class MainComponent implements OnInit {
   }
 
   public enterSearch(value: EventData): void {
-    console.log(value);
+    // console.log(value);
     if (value.type === 'search') {
       this.searchString = value.mode as string;
       if (!this.isShowCards) {
