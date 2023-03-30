@@ -1,6 +1,8 @@
 :host {
   display: flex;
+  box-sizing: border-box;
   width: 134px;
+  padding: 5px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -24,7 +26,7 @@
   padding: 0;
   border: none;
   border-radius: 5px;
-  filter: drop-shadow(2px 2px 4px rgba(47, 128, 237, 0.25));
+  filter: drop-shadow(2px 0 4px rgba(30, 86, 164, 0.81));
   cursor: pointer;
 }
 

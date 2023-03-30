@@ -3,7 +3,7 @@ import { LoadDataService } from '../../services/load-data.service';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { DateComparsionService } from '../../services/date-comparsion.service';
 import { DateSortingService } from '../../services/date-sorting.service';
-import { NotFoundComponent } from '../../pages/not-found/not-found.component';
+import { NotFoundComponent } from '../not-found/not-found.component';
 import { CountSortingService } from '../../services/count-sorting.service';
 import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../services/click-sorting.service';
