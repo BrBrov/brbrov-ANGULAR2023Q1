@@ -1,11 +1,11 @@
 :host {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.header__sort-date {
+.header__sort-count {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -17,7 +17,7 @@
   user-select: none;
 }
 
-.header__sort-date:active {
+.header__sort-count:active {
   text-decoration-line: underline;
   color: #710ab0;
 }

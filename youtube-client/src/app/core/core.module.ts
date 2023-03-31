@@ -1,22 +1,41 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainComponent } from './pages/main/main.component';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './pages/header/header.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {YoutubeModule} from '../youtube/youtube.module';
-import {AuthModule} from '../auth/auth.module';
-import {HttpClientModule} from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from '../auth/auth.module';
+import { ButtonDateComponent } from './components/button-date/button-date.component';
+import { ButtonViewComponent } from './components/button-view/button-view.component';
+import { SearchComponent } from './components/search/search.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { SortingBlockComponent } from './components/sorting-block/sorting-block.component';
+import { ClickSortingService } from './services/click-sorting.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HeaderComponent, MainComponent, NotFoundComponent],
+  declarations:
+    [HeaderComponent,
+      NotFoundComponent,
+      ButtonDateComponent,
+      ButtonViewComponent,
+      SearchComponent,
+      SettingsComponent,
+      SortingBlockComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    YoutubeModule,
+    FormsModule,
     AuthModule
   ],
-  exports: [HeaderComponent, MainComponent, NotFoundComponent]
+  exports:
+    [HeaderComponent,
+      NotFoundComponent,
+      ButtonDateComponent,
+      ButtonViewComponent,
+      SearchComponent,
+      SettingsComponent,
+      SortingBlockComponent],
+  providers: [ClickSortingService]
 })
-export class CoreModule { }
+export class CoreModule {
+}

@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { ClickSortingService } from '../../../core/services/click-sorting.service';
+import { ClickSortingService } from '../../services/click-sorting.service';
 
 @Component({
-  selector: 'app-button-view',
-  templateUrl: './button-view.component.html',
-  styleUrls: ['./button-view.component.scss']
+  selector: 'app-button-date',
+  templateUrl: './button-date.component.html',
+  styleUrls: ['./button-date.component.scss']
 })
-export class ButtonViewComponent {
+export class ButtonDateComponent {
   private data: EventData = {
-    type: 'view',
+    type: 'date',
     mode: 'null'
   };
 
   constructor(private click: ClickSortingService) {
   }
 
-  public onSortView(): void {
+  public onSortDate(): void {
     this.setMode();
     this.click.onSorting(this.data);
   }

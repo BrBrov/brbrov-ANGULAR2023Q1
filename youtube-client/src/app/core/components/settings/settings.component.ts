@@ -8,7 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class SettingsComponent {
   private value = false;
 
-  @Output() mode = new EventEmitter<boolean>();
+  @Output() mode: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public listen(): void {
     this.value = !this.value;

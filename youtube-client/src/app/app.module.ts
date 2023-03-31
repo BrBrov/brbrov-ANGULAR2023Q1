@@ -4,7 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClickSortingService } from './core/services/click-sorting.service';
-import {CoreModule} from './core/core.module';
+import { CoreModule } from './core/core.module';
+import { YoutubeModule } from './youtube/youtube.module';
+import { AuthModule } from './auth/auth.module';
 import {SharedModule} from './shared/shared.module';
 
 @NgModule({
@@ -15,6 +17,8 @@ import {SharedModule} from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    YoutubeModule,
+    AuthModule,
     SharedModule
   ],
   bootstrap: [AppComponent],

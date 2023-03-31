@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { LoadDataService } from '../../services/load-data.service';
-import { CardComponent } from '../../../shared/components/card/card.component';
 import { DateComparsionService } from '../../services/date-comparsion.service';
 import { DateSortingService } from '../../services/date-sorting.service';
-import { NotFoundComponent } from '../not-found/not-found.component';
 import { CountSortingService } from '../../services/count-sorting.service';
 import { WordSortingService } from '../../services/word-sorting.service';
-import { ClickSortingService } from '../../services/click-sorting.service';
+import { ClickSortingService } from '../../../core/services/click-sorting.service';
+import { NotFoundComponent } from '../../../core/pages/not-found/not-found.component';
+import { CardComponent } from '../../../shared/components/card/card.component';
+
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
-  providers: [LoadDataService, DateComparsionService, DateSortingService, CountSortingService]
+  styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
   private data: ResponseData;
@@ -104,8 +104,8 @@ export class MainComponent implements OnInit {
 
   private addCards(data: ResponseData): void {
     const timeNow = new Date().toString();
-    data.items.forEach((item: DataItem) => {
-      const card = this.container.createComponent(CardComponent);
+    data.items.forEach((item: DataItem): void => {
+      const card: ComponentRef<CardComponent> = this.container.createComponent(CardComponent);
       card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
       card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
       card.instance.imgRef = item.snippet.thumbnails.high.url;

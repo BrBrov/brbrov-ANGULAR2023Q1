@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MainComponent } from './core/pages/main/main.component';
+import { MainComponent } from './youtube/pages/main/main.component';
 
 @Component({
   selector: 'app-root',

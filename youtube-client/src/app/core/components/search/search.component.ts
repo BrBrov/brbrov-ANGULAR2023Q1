@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClickSortingService } from '../../../core/services/click-sorting.service';
+import { ClickSortingService } from '../../services/click-sorting.service';
 
 @Component({
   selector: 'app-search',
