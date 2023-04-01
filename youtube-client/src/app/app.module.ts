@@ -18,7 +18,6 @@ import {SharedModule} from './shared/shared.module';
     AppRoutingModule,
     CoreModule,
     YoutubeModule,
-    AuthModule,
     SharedModule
   ],
   bootstrap: [AppComponent],
