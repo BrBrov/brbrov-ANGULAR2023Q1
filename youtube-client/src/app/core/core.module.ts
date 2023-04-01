@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './pages/header/header.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonDateComponent } from './components/button-date/button-date.component';
 import { ButtonViewComponent } from './components/button-view/button-view.component';
 import { SearchComponent } from './components/search/search.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
       LoginComponent],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
     FormsModule,
     RouterModule.forChild(routes)
   ],
