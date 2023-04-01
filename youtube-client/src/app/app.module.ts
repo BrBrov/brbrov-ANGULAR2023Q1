@@ -7,10 +7,12 @@ import { ClickSortingService } from './core/services/click-sorting.service';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { SharedModule } from './shared/shared.module';
+import {AuthModule} from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     CoreModule,
     YoutubeModule,
-    SharedModule
+    SharedModule,
+    AuthModule
   ],
   bootstrap: [AppComponent],
   providers: [ClickSortingService]

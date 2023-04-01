@@ -16,6 +16,14 @@ const routes: Routes = [
     path: 'fail',
     pathMatch: 'full',
     loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'fail'
   }
 ];
 

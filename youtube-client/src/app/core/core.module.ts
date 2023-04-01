@@ -7,10 +7,9 @@ import { ButtonViewComponent } from './components/button-view/button-view.compon
 import { SearchComponent } from './components/search/search.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { SortingBlockComponent } from './components/sorting-block/sorting-block.component';
-import { ClickSortingService } from './services/click-sorting.service';
 import { FormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
-import {CoreRoutingModule} from './core-routing.module';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
+import { CoreRoutingModule } from './core-routing.module';
 
 
 
@@ -23,7 +22,7 @@ import {CoreRoutingModule} from './core-routing.module';
       SearchComponent,
       SettingsComponent,
       SortingBlockComponent,
-      LoginComponent],
+      LoginButtonComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -31,8 +30,7 @@ import {CoreRoutingModule} from './core-routing.module';
     NgOptimizedImage
   ],
   exports:
-    [HeaderComponent],
-  providers: [ClickSortingService]
+    [HeaderComponent]
 })
 export class CoreModule {
 }

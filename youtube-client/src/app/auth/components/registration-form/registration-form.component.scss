@@ -1,0 +1,100 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__registration-form {
+  display: flex;
+  width: 304px;
+  height: 291px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.main__registration-wrapper {
+  display: flex;
+  width: 100%;
+  height: 48px;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.main__registration-title {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.65em;
+  line-height: 12px;
+  color: #828282;
+}
+
+.main__registration-input {
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+  padding-left: 9px;
+  background-color: #E0E0E0;
+  border: none;
+  outline: none;
+}
+
+.main__registration-indicator {
+  width: 100%;
+  height: 5px;
+  border-radius: 0 0 5px 5px;
+  background-color: #E0E0E0;
+}
+
+.main__registration-entrance {
+  display: flex;
+  width: 100%;
+  height: 30px;
+  margin-top: 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+}
+
+.main__to-login {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.75em;
+  line-height: 14px;
+  text-decoration-line: underline;
+  color: #2F80ED;
+  cursor: pointer;
+  user-select: none;
+}
+
+.main__to-login:hover {
+  color: #842fed;
+}
+
+.main__to-login:active {
+  color: #2F80ED;
+}
+
+.main__registration-button {
+  width: 150px;
+  height: 30px;
+  background-color: #2F80ED;
+  color: #FFFFFF;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
+  border: none;
+  border-radius: 5px;
+}
+
+.main__registration-button:hover {
+  background-color: #85B9FF;
+  filter: unset;
+}
+
+.main__registration-button:active {
+  background-color: #2F80ED;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
+}

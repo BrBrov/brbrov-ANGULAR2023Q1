@@ -18,11 +18,11 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class MainComponent implements OnInit {
   private data: ResponseData;
 
-  private searchString = '';
+  private searchString: string = '';
 
-  private sortString = '';
+  private sortString: string = '';
 
-  private isShowCards = false;
+  private isShowCards: boolean = false;
 
   @ViewChild('wrapper', { read: ViewContainerRef }) container: ViewContainerRef;
 

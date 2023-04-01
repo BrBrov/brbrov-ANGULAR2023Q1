@@ -1,0 +1,27 @@
+<form class="main__registration-form" [formGroup]="registration" (ngSubmit)="onSubmit()">
+  <div class="main__registration-wrapper">
+    <label class="main__registration-title" for="name">First Name</label>
+    <input class="main__registration-input" id="name" type="text" formControlName="name">
+    <div class="main__registration-indicator"></div>
+  </div>
+  <div class="main__registration-wrapper">
+    <label class="main__registration-title" for="surname">Last Name</label>
+    <input class="main__registration-input" id="surname" type="text" formControlName="surname">
+    <div class="main__registration-indicator"></div>
+  </div>
+  <div class="main__registration-wrapper">
+    <label class="main__registration-title" for="mail">E-mail</label>
+    <input class="main__registration-input" id="mail" type="text" formControlName="mail">
+    <div class="main__registration-indicator"></div>
+  </div>
+  <div class="main__registration-wrapper">
+    <label class="main__registration-title" for="password">Password</label>
+    <input class="main__registration-input" id="password" type="password" formControlName="password">
+    <div class="main__registration-indicator"></div>
+  </div>
+  <div class="main__registration-entrance">
+    <span class="main__to-login" (click)="toLogin()">Login</span>
+    <button class="main__registration-button" type="submit">Registration</button>
+  </div>
+</form>
+
