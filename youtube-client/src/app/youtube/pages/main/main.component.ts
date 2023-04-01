@@ -7,6 +7,7 @@ import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../../core/services/click-sorting.service';
 import { NotFoundComponent } from '../../../core/pages/not-found/not-found.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class MainComponent implements OnInit {
     private dateSorting: DateSortingService,
     private countSorting: CountSortingService,
     private wordSorting: WordSortingService,
-    private clickSortMenu: ClickSortingService) {}
+    private clickSortMenu: ClickSortingService,
+    private route: Router) {}
 
   ngOnInit(): void {
     this.service.getData().subscribe((response): void => {
@@ -115,7 +117,6 @@ export class MainComponent implements OnInit {
   }
 
   private showNotFound(): void {
-    this.container.clear();
-    this.container.createComponent(NotFoundComponent);
+    this.route.navigate(['fail']);
   }
 }
