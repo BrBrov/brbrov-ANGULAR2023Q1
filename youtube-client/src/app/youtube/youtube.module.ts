@@ -7,20 +7,14 @@ import {DateComparsionService} from './services/date-comparsion.service';
 import {DateSortingService} from './services/date-sorting.service';
 import {LoadDataService} from './services/load-data.service';
 import {WordSortingService} from './services/word-sorting.service';
-import { Route, RouterModule, Routes } from '@angular/router';
+import {YoutubeRoutingModule} from './youtube-routing.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: MainComponent
-  }
-];
 @NgModule({
   declarations: [MainComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule.forChild(routes)
+    YoutubeRoutingModule
   ],
   exports: [MainComponent],
   providers: [

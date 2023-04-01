@@ -67,4 +67,8 @@ declare global {
     'type': string;
     'mode': boolean | string ;
   };
+
+  type SearchInput = {
+    search: string
+  }
 }

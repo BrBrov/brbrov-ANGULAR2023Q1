@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ClickSortingService } from '../../services/click-sorting.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -11,10 +11,10 @@ export class SearchComponent {
 
   public valueSearch = '';
 
-  constructor(private click: ClickSortingService) {
+  constructor(private router: Router) {
   }
 
   public onClick(): void {
-    this.click.onSorting({ type: 'search', mode: this.valueSearch });
+    this.router.navigate([`main`], {queryParams: {search: this.valueSearch}});
   }
 }

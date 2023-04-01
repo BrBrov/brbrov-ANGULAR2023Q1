@@ -5,9 +5,8 @@ import { DateSortingService } from '../../services/date-sorting.service';
 import { CountSortingService } from '../../services/count-sorting.service';
 import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../../core/services/click-sorting.service';
-import { NotFoundComponent } from '../../../core/pages/not-found/not-found.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
-import { Route, Router } from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 
 @Component({
@@ -15,6 +14,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent implements OnInit {
   private data: ResponseData;
 
@@ -32,25 +32,39 @@ export class MainComponent implements OnInit {
     private countSorting: CountSortingService,
     private wordSorting: WordSortingService,
     private clickSortMenu: ClickSortingService,
-    private route: Router) {}
+    private route: Router,
+    private active: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.service.getData().subscribe((response): void => {
-      this.data = <ResponseData>response;
-      this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
+      this.active.queryParams.subscribe((query: Params) => {
+
+        this.service.getData().subscribe((response): void => {
+          this.data = <ResponseData>response;
+          if (Object.hasOwn(query, 'search')) {
+            this.searchString = query['search'].toLowerCase();
+
+            this.data.items = this.data.items.filter( (item: DataItem): DataItem => {
+              if (item.snippet.title.toLowerCase().includes(this.searchString)) {
+                return item;
+              }
+              if (item.snippet.tags.includes(this.searchString)) {
+                return item;
+              }
+              if (item.snippet.channelTitle.toLowerCase().includes(this.searchString)) {
+                return item;
+              }
+            });
+
+            this.showCards(this.data);
+          }
+
+          this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
+      });
     });
   }
 
   public enterSearch(value: EventData): void {
-    // console.log(value);
-    if (value.type === 'search') {
-      this.searchString = value.mode as string;
-      if (!this.isShowCards) {
-        this.isShowCards = true;
-        this.showCards(this.data);
-      }
-      return;
-    }
+    console.log(value);
     if (value.type === 'date' || value.type === 'view' || value.type === 'word') {
       if (!this.isShowCards) {
         this.showNotFound();
@@ -100,6 +114,7 @@ export class MainComponent implements OnInit {
   }
 
   private showCards(data: ResponseData): void {
+    if (!this.isShowCards) this.isShowCards = true;
     this.container.clear();
     this.addCards(data);
   }

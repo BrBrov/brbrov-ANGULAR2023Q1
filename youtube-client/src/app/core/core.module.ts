@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HeaderComponent } from './pages/header/header.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ButtonDateComponent } from './components/button-date/button-date.component';
@@ -9,16 +9,10 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SortingBlockComponent } from './components/sorting-block/sorting-block.component';
 import { ClickSortingService } from './services/click-sorting.service';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import {CoreRoutingModule} from './core-routing.module';
 
-const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    component: NotFoundComponent
-  }
-];
+
 
 @NgModule({
   declarations:
@@ -33,7 +27,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    CoreRoutingModule,
+    NgOptimizedImage
   ],
   exports:
     [HeaderComponent],
