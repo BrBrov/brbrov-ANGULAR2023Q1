@@ -26,6 +26,8 @@ export class CardComponent {
 
   public statistic: Statistics;
 
+  public searchString: string;
+
   constructor(private route: Router) {
   }
 
@@ -37,6 +39,6 @@ export class CardComponent {
   }
 
   public toMoreInfo(): void {
-    this.route.navigate(['main/card'], {queryParams: {id: this.id, color: this.colorBottom}});
+    this.route.navigate(['main/card'], {queryParams: {id: this.id, color: this.colorBottom, search: this.searchString}});
   }
 }

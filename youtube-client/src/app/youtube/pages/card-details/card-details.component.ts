@@ -18,6 +18,7 @@ export class CardDetailsComponent implements OnInit{
   public likes: string = '';
   public dislikes: string = '';
   public comments: string = '';
+  public searchString: string = '';
 
   constructor(private router: Router, private linkParam: ActivatedRoute, private loader: LoadDataService) { }
 
@@ -44,12 +45,16 @@ export class CardDetailsComponent implements OnInit{
             console.log(param);
             this.color = param['color'];
           }
+
+          if (Object.hasOwn(param, 'search')) {
+            this.searchString = param['search'];
+          }
         }
       })
     })
   }
 
   public backToMain(): void {
-    this.router.navigate(['main']);
+    this.router.navigate(['main'], {queryParams: {search: this.searchString}});
   }
 }

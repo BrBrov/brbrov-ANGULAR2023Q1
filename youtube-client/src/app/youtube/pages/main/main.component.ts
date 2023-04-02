@@ -128,6 +128,7 @@ export class MainComponent implements OnInit {
       card.instance.imgRef = item.snippet.thumbnails.high.url;
       card.instance.id = item.id;
       card.instance.statistic = item.statistics;
+      card.instance.searchString = this.searchString;
       card.instance.setData();
     });
   }
