@@ -10,7 +10,7 @@ describe('WrongDataComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ WrongDataComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(WrongDataComponent);
     component = fixture.componentInstance;

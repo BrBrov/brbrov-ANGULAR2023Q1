@@ -6,7 +6,7 @@ import { CountSortingService } from '../../services/count-sorting.service';
 import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../../core/services/click-sorting.service';
 import { CardComponent } from '../../../shared/components/card/card.component';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 
 @Component({
@@ -18,11 +18,11 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 export class MainComponent implements OnInit {
   private data: ResponseData;
 
-  private searchString: string = '';
+  private searchString = '';
 
-  private sortString: string = '';
+  private sortString = '';
 
-  private isShowCards: boolean = false;
+  private isShowCards = false;
 
   @ViewChild('wrapper', { read: ViewContainerRef }) container: ViewContainerRef;
 
@@ -36,29 +36,29 @@ export class MainComponent implements OnInit {
     private active: ActivatedRoute) {}
 
   ngOnInit(): void {
-      this.active.queryParams.subscribe((query: Params) => {
+    this.active.queryParams.subscribe((query: Params) => {
 
-        this.service.getData().subscribe((response): void => {
-          this.data = <ResponseData>response;
-          if (Object.hasOwn(query, 'search')) {
-            this.searchString = query['search'].toLowerCase();
+      this.service.getData().subscribe((response): void => {
+        this.data = <ResponseData>response;
+        if (Object.hasOwn(query, 'search')) {
+          this.searchString = query['search'].toLowerCase();
 
-            this.data.items = this.data.items.filter( (item: DataItem): DataItem => {
-              if (item.snippet.title.toLowerCase().includes(this.searchString)) {
-                return item;
-              }
-              if (item.snippet.tags.includes(this.searchString)) {
-                return item;
-              }
-              if (item.snippet.channelTitle.toLowerCase().includes(this.searchString)) {
-                return item;
-              }
-            });
+          this.data.items = this.data.items.filter( (item: DataItem): DataItem => {
+            if (item.snippet.title.toLowerCase().includes(this.searchString)) {
+              return item;
+            }
+            if (item.snippet.tags.includes(this.searchString)) {
+              return item;
+            }
+            if (item.snippet.channelTitle.toLowerCase().includes(this.searchString)) {
+              return item;
+            }
+          });
 
-            this.showCards(this.data);
-          }
+          this.showCards(this.data);
+        }
 
-          this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
+        this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
       });
     });
   }

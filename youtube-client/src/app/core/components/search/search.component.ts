@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -15,6 +15,6 @@ export class SearchComponent {
   }
 
   public onClick(): void {
-    this.router.navigate([`main`], {queryParams: {search: this.valueSearch}});
+    this.router.navigate(['main'], { queryParams: { search: this.valueSearch } });
   }
 }

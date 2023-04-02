@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import {LoginSetterService} from '../../../core/services/login-setter.service';
 
 @Component({
   selector: 'app-login',
@@ -8,11 +9,15 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private route: Router) {}
+  constructor(private route: Router, private loginEvent: LoginSetterService) {}
 
   public showInfo(ev: string):void {
+
     if (!ev) {
-      this.route.navigate(['auth/wrong']);
+      this.route.navigate(['auth/wrong'], {queryParams: {error: 'unauthorized'}});
+    } else {
+      this.loginEvent.onLogin(ev, true);
+      this.route.navigate(['auth/success'], {queryParams:{name: ev}});
     }
   }
 }

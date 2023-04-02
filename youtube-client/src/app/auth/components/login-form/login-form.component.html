@@ -2,15 +2,15 @@
   <div class="main__login-wrapper">
     <label class="main__login-text" for="name">Login</label>
     <input class="main__login-input" id="name" type="text" formControlName="login">
-    <div class="main__login-indicator"></div>
+    <div class="main__login-indicator" *ngIf="formLogin.invalid  && formLogin.touched"></div>
   </div>
   <div class="main__password-wrapper">
     <label class="main__login-text" for="password">Password</label>
     <input class="main__password-input" id="password" type="password" formControlName="password">
-    <div class="main__password-indicator"></div>
+    <div class="main__password-indicator" *ngIf="formLogin.invalid && formLogin.touched"></div>
   </div>
   <div class="main__entrance-wrapper">
     <span class="main__to-registration" (click)="toRegistration()">Registration</span>
-    <button class="main__login-button" type="submit">Login</button>
+    <button class="main__login-button" type="submit" [disabled]="formLogin.invalid">Login</button>
   </div>
 </form>

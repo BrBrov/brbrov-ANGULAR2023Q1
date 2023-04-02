@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HeaderComponent } from './pages/header/header.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ButtonDateComponent } from './components/button-date/button-date.component';

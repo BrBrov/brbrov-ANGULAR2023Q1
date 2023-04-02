@@ -10,7 +10,7 @@ describe('RegistrationFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ RegistrationFormComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(RegistrationFormComponent);
     component = fixture.componentInstance;

@@ -68,7 +68,15 @@ declare global {
     'mode': boolean | string ;
   };
 
-  type SearchInput = {
-    search: string
+  type AuthData = {
+    name: string,
+    surname: string,
+    mail: string,
+    password: string
+  }
+
+  type AccountEvent = {
+    name: string,
+    ev: boolean
   }
 }
