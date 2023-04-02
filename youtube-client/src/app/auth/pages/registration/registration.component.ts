@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {LoginSetterService} from '../../../core/services/login-setter.service';
+import {AuthService} from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-registration',
@@ -9,15 +10,17 @@ import {LoginSetterService} from '../../../core/services/login-setter.service';
 })
 export class RegistrationComponent {
 
-  constructor(private route: Router, private setLogin: LoginSetterService) {
+  constructor(private route: Router, private setLogin: LoginSetterService, private authHandler: AuthService) {
   }
 
-  public onEvent(ev: string): void {
-    if(!ev) {
+  public onEvent(ev: AuthData): void {
+    const result: string = this.authHandler.checkRegistrationData(ev);
+
+    if(!result) {
       this.route.navigate(['auth/wrong'], {queryParams: {error: 'unregister'}});
     } else {
-      this.setLogin.onLogin(ev, true);
-      this.route.navigate(['auth/success'], {queryParams:{name: ev}});
+      this.setLogin.onLogin(result, true);
+      this.route.navigate(['auth/success'], {queryParams:{name: result}});
     }
   }
 }

@@ -17,9 +17,26 @@ export class LoginButtonComponent implements OnInit{
   ngOnInit(): void {
     const authData: string = localStorage.getItem('auth');
     if (authData) {
-      const account:AuthData = JSON.parse(authData);
-      this.login = account.name;
-      this.mode = true
+      const baseShowing: string = localStorage.getItem('base');
+      if (!baseShowing) {
+        this.route.navigate(['auth/login']);
+        return;
+      }
+
+      const base:AuthData[] = JSON.parse(baseShowing);
+      const token: string = JSON.parse(authData);
+      const account: AuthData[] = base.filter((data: AuthData): boolean => {
+        if (data.key === String(token)) return true;
+      });
+      console.log(account);
+
+      if (!account[0].key) {
+        this.route.navigate(['fail']);
+        return;
+      } else {
+        this.login = account[0].name;
+        this.mode = true;
+      }
     } else {
       this.login = 'Your login';
       this.mode = false;

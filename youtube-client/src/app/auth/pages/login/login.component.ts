@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {LoginSetterService} from '../../../core/services/login-setter.service';
+import {AuthService} from '../../services/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -9,15 +10,16 @@ import {LoginSetterService} from '../../../core/services/login-setter.service';
 })
 export class LoginComponent {
 
-  constructor(private route: Router, private loginEvent: LoginSetterService) {}
+  constructor(private route: Router, private loginEvent: LoginSetterService, private authHandler: AuthService) {}
 
-  public showInfo(ev: string):void {
+  public showInfo(ev: AuthData):void {
+    const result: string = this.authHandler.checkLoginData(ev);
 
-    if (!ev) {
+    if (!result) {
       this.route.navigate(['auth/wrong'], {queryParams: {error: 'unauthorized'}});
     } else {
-      this.loginEvent.onLogin(ev, true);
-      this.route.navigate(['auth/success'], {queryParams:{name: ev}});
+      this.loginEvent.onLogin(result, true);
+      this.route.navigate(['auth/success'], {queryParams:{name: result}});
     }
   }
 }

@@ -11,7 +11,7 @@ export class LoginFormComponent implements OnInit {
 
   public formLogin: FormGroup;
 
-  @Output() event: EventEmitter<string> = new EventEmitter<string>();
+  @Output() event: EventEmitter<AuthData> = new EventEmitter<AuthData>();
 
   constructor(private buildForm: FormBuilder, private route: Router) {}
 
@@ -23,31 +23,18 @@ export class LoginFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.formLogin.valid);
-    const localData: string = localStorage.getItem('auth');
-    if (!localData) {
-      this.event.emit('');
-    } else {
-
-      const authData: AuthData = JSON.parse(localData);
-      const login: string[] = [authData.name, authData.surname];
-      const enterLogin: string[] = this.formLogin.value.login.split(' ');
-
-      if (login.length !== enterLogin.length) {
-        this.toWrong();
-        return;
-      }
-      const check: boolean = enterLogin.every((item: string) => login.includes(item));
-      if (!check) {
-        this.toWrong();
-        return;
-      }
-      if (this.formLogin.value.password !== authData.password) {
-        this.toWrong();
-        return;
-      }
-      this.event.emit(authData.name);
+    const arrData: string[] = this.formLogin.value.login.split(' ');
+    if (arrData.length < 2) {
+      this.toWrong();
+      return;
     }
+    const authData: AuthData = {
+      name: arrData[0],
+      surname: arrData[1],
+      mail: '',
+      password: this.formLogin.value.password
+    };
+    this.event.emit(authData);
   }
 
   public toRegistration():void {

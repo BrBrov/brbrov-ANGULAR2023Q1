@@ -17,13 +17,27 @@ export class AccountComponent implements OnInit{
     if (!authData) {
       this.route.navigate(['fail']);
     } else {
-      const auth: AuthData = JSON.parse(authData);
-      this.name = auth.name;
+      const token: string = JSON.parse(authData);
+      const baseShowing: string = localStorage.getItem('base');
+      if (!baseShowing) {
+        this.route.navigate(['fail']);
+        return;
+      }
+
+      const base: AuthData[] = JSON.parse(baseShowing);
+
+      const account: AuthData[] = base.filter((item: AuthData): boolean => String(token) === item.key);
+
+      if (!account.length && account.length > 1) {
+        this.route.navigate(['fail']);
+      }
+
+      this.name = account[0].name;
     }
   }
 
   public exit(): void {
-    localStorage.clear();
+    localStorage.removeItem('auth');
     this.loginEvent.onLogin('Your name', false);
     this.route.navigate(['auth/login']);
   }

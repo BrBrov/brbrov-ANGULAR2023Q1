@@ -72,7 +72,8 @@ declare global {
     name: string,
     surname: string,
     mail: string,
-    password: string
+    password: string,
+    key?: string
   }
 
   type AccountEvent = {
