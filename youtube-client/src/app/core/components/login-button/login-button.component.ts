@@ -28,7 +28,6 @@ export class LoginButtonComponent implements OnInit{
       const account: AuthData[] = base.filter((data: AuthData): boolean => {
         if (data.key === String(token)) return true;
       });
-      console.log(account);
 
       if (!account[0].key) {
         this.route.navigate(['fail']);

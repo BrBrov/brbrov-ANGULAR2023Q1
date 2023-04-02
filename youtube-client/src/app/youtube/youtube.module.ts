@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { MainComponent } from './pages/main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CountSortingService } from './services/count-sorting.service';
@@ -8,13 +8,15 @@ import { DateSortingService } from './services/date-sorting.service';
 import { LoadDataService } from './services/load-data.service';
 import { WordSortingService } from './services/word-sorting.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
+import { CardDetailsComponent } from './pages/card-details/card-details.component';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [MainComponent, CardDetailsComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    YoutubeRoutingModule
+    YoutubeRoutingModule,
+    NgOptimizedImage
   ],
   exports: [MainComponent],
   providers: [

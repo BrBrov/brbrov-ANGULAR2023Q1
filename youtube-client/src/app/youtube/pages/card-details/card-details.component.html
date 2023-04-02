@@ -1,0 +1,51 @@
+<div class="main__info-wrapper">
+  <div class="main__info-left">
+    <div class="main__exit-info" (click)="backToMain()">
+      <img class="main__exit-image" src="assets/arrow.svg" alt="back to main">
+    </div>
+  </div>
+  <div class="main__info-middle">
+    <img class="main__info-image" [src]="imgLink" alt="Author channel">
+  </div>
+  <div class="main__info-right">
+    <div class="main__info-block">
+      <div class="main__top-info">
+        <div class="main__info-label">
+          <span class="main__info-title">{{title}}</span>
+          <span class="main__info-date">{{date}}</span>
+        </div>
+        <div class="main__info-description">
+          <span class="main__info-describe">Description</span>
+          <div class="main__info-text">{{description}}</div>
+        </div>
+      </div>
+      <div class="main__social-block">
+        <div class="main__social-wrapper">
+          <div class="main__social-image">
+            <img class="main__social-icon" src="assets/viewed.svg" alt="viewed">
+          </div>
+          <span class="main__social-count">{{views}}</span>
+        </div>
+        <div class="main__social-wrapper">
+          <div class="main__social-image">
+            <img class="main__social-icon" src="assets/liked.svg" alt="likes">
+          </div>
+          <span class="main__social-count">{{likes}}</span>
+        </div>
+        <div class="main__social-wrapper">
+          <div class="main__social-image">
+            <img class="main__social-icon" src="assets/dislike.svg" alt="dislikes">
+          </div>
+          <span class="main__social-count">{{dislikes}}</span>
+        </div>
+        <div class="main__social-wrapper">
+          <div class="main__social-image">
+            <img class="main__social-icon" src="assets/group.svg" alt="comments">
+          </div>
+          <span class="main__social-count">{{comments}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="main__info-indicator" [style.background]="color"></div>
+  </div>
+</div>

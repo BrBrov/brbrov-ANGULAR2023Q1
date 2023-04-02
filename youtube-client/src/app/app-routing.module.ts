@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {MainGuard} from './core/guards/main-guard.guard';
 
 const routes: Routes = [
   {
@@ -9,13 +10,14 @@ const routes: Routes = [
   },
   {
     path: 'main',
-    pathMatch: 'full',
-    loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule)
+    loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule),
+    canActivate: [MainGuard]
   },
   {
     path: 'fail',
     pathMatch: 'full',
-    loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
+    loadChildren: () => import('./core/core.module').then(m => m.CoreModule),
+    canActivate: [MainGuard]
   },
   {
     path: 'auth',

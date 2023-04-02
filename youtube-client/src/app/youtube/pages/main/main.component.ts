@@ -126,6 +126,7 @@ export class MainComponent implements OnInit {
       card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
       card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
       card.instance.imgRef = item.snippet.thumbnails.high.url;
+      card.instance.id = item.id;
       card.instance.statistic = item.statistics;
       card.instance.setData();
     });
