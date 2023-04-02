@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -42,6 +42,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   private toWrong(): void {
-    this.route.navigate(['auth/wrong'], {queryParams: {error: 'unauthorized'}});
+    this.route.navigate(['auth/wrong'], { queryParams: { error: 'unauthorized' } });
   }
 }

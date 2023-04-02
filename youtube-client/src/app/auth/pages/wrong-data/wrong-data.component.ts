@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-wrong-data',
   templateUrl: './wrong-data.component.html',
   styleUrls: ['./wrong-data.component.scss']
 })
-export class WrongDataComponent implements OnInit{
+export class WrongDataComponent implements OnInit {
 
-  public info: string = 'Unknown error';
+  public info = 'Unknown error';
 
-  public link: string = 'Unknown error';
+  public link = 'Unknown error';
 
   private mode: boolean | null = null;
 
@@ -23,7 +23,7 @@ export class WrongDataComponent implements OnInit{
         case 'unauthorized':
           this.info = 'Wrong data!';
           this.link = '...back to login';
-          this.mode = false
+          this.mode = false;
           break;
         case 'unregister':
           this.info = 'Account already exists';

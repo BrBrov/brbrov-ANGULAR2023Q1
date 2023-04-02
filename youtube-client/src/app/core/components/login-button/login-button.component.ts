@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {LoginSetterService} from '../../services/login-setter.service';
+import { LoginSetterService } from '../../services/login-setter.service';
 
 @Component({
   selector: 'app-login-button',
   templateUrl: './login-button.component.html',
   styleUrls: ['./login-button.component.scss']
 })
-export class LoginButtonComponent implements OnInit{
-  public login: string = 'Your login';
+export class LoginButtonComponent implements OnInit {
+  public login = 'Your login';
 
-  private mode: boolean = false;
+  private mode = false;
 
   constructor(private route: Router, private loginEvent: LoginSetterService) {}
 

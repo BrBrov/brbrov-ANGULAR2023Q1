@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MainComponent } from './pages/main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CountSortingService } from './services/count-sorting.service';

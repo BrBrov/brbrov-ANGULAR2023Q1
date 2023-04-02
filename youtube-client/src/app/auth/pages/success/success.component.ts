@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-success',
   templateUrl: './success.component.html',
   styleUrls: ['./success.component.scss']
 })
-export class SuccessComponent implements OnInit{
-  public name: string = 'User';
+export class SuccessComponent implements OnInit {
+  public name = 'User';
 
   constructor(private route: Router, private routeState: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.routeState.queryParams.subscribe((param) => {
-      if (!param['name']){
+      if (!param['name']) {
         this.route.navigate(['fail']);
       } else {
         this.name = param['name'];

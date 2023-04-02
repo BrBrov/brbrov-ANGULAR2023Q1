@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -22,7 +22,7 @@ export class CardComponent {
 
   public comments = '0';
 
-  public id: string = '0';
+  public id = '0';
 
   public statistic: Statistics;
 
@@ -39,6 +39,6 @@ export class CardComponent {
   }
 
   public toMoreInfo(): void {
-    this.route.navigate(['main/card'], {queryParams: {id: this.id, color: this.colorBottom, search: this.searchString}});
+    this.route.navigate(['main/card'], { queryParams: { id: this.id, color: this.colorBottom, search: this.searchString } });
   }
 }

@@ -74,10 +74,10 @@ declare global {
     mail: string,
     password: string,
     key?: string
-  }
+  };
 
   type AccountEvent = {
     name: string,
     ev: boolean
-  }
+  };
 }

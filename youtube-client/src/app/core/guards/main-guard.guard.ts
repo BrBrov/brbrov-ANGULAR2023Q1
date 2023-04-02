@@ -1,5 +1,5 @@
-import {inject, Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from '@angular/router';
+import { inject, Injectable } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
 
 @Injectable({
@@ -8,6 +8,7 @@ import {ActivatedRouteSnapshot, CanActivateFn, Router, RouterStateSnapshot} from
 class MainGuardService {
 
   constructor(private router: Router) {}
+
   canActivate(): boolean {
     const authShowing = localStorage.getItem('auth');
     const baseShowing: string = localStorage.getItem('base');
@@ -36,6 +37,6 @@ class MainGuardService {
   }
 }
 
-export const MainGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const MainGuard: CanActivateFn = () => {
   return inject(MainGuardService).canActivate();
 };

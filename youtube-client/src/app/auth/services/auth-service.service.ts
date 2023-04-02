@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService{
+export class AuthService {
   private authData: AuthData;
 
   private base: Array<AuthData>;
@@ -19,7 +19,7 @@ export class AuthService{
 
       const result: boolean = this.base.some((item: AuthData): boolean => {
         if (data.name === item.name && data.surname === item.surname) return true;
-      })
+      });
       console.log(result);
       if (result) return '';
       this.setData(data);

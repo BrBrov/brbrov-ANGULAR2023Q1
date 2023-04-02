@@ -7,9 +7,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthRoutingModule } from './auth-routing.module';
 import { WrongDataComponent } from './pages/wrong-data/wrong-data.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
-import {SuccessComponent} from './pages/success/success.component';
-import {AccountComponent} from './pages/account/account.component';
-import {AuthService} from './services/auth-service.service';
+import { SuccessComponent } from './pages/success/success.component';
+import { AccountComponent } from './pages/account/account.component';
+import { AuthService } from './services/auth-service.service';
 
 @NgModule({
   declarations: [

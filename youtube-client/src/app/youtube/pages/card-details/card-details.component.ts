@@ -1,24 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LoadDataService} from '../../services/load-data.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoadDataService } from '../../services/load-data.service';
 
 @Component({
   selector: 'app-card-details',
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.scss']
 })
-export class CardDetailsComponent implements OnInit{
+export class CardDetailsComponent implements OnInit {
 
-  public imgLink: string = '';
-  public title: string = '';
-  public date: string = '';
-  public description: string = '';
-  public color: string = '';
-  public views: string = '';
-  public likes: string = '';
-  public dislikes: string = '';
-  public comments: string = '';
-  public searchString: string = '';
+  public imgLink = '';
+
+  public title = '';
+
+  public date = '';
+
+  public description = '';
+
+  public color = '';
+
+  public views = '';
+
+  public likes = '';
+
+  public dislikes = '';
+
+  public comments = '';
+
+  public searchString = '';
 
   constructor(private router: Router, private linkParam: ActivatedRoute, private loader: LoadDataService) { }
 
@@ -27,7 +36,7 @@ export class CardDetailsComponent implements OnInit{
       this.loader.getData().subscribe((response) => {
         const data: ResponseData = <ResponseData>response;
 
-        if(!Object.hasOwn(param, 'id')) {
+        if (!Object.hasOwn(param, 'id')) {
           this.router.navigate(['main']);
         } else {
           const card: DataItem[] = data.items.filter((item: DataItem) => item.id === param['id']);
@@ -50,11 +59,11 @@ export class CardDetailsComponent implements OnInit{
             this.searchString = param['search'];
           }
         }
-      })
-    })
+      });
+    });
   }
 
   public backToMain(): void {
-    this.router.navigate(['main'], {queryParams: {search: this.searchString}});
+    this.router.navigate(['main'], { queryParams: { search: this.searchString } });
   }
 }

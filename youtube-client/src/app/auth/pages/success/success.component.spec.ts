@@ -10,7 +10,7 @@ describe('SuccessComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ SuccessComponent ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SuccessComponent);
     component = fixture.componentInstance;
