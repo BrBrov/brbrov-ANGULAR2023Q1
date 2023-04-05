@@ -1,4 +1,10 @@
-import { Component, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  ComponentRef,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { LoadDataService } from '../../services/load-data.service';
 import { DateComparsionService } from '../../services/date-comparsion.service';
 import { DateSortingService } from '../../services/date-sorting.service';
@@ -24,7 +30,7 @@ export class MainComponent implements OnInit {
 
   private isShowCards = false;
 
-  @ViewChild('wrapper', { read: ViewContainerRef }) container: ViewContainerRef;
+  @ViewChild('wrapper', { read: ViewContainerRef, static: true }) container: ViewContainerRef;
 
   constructor(private service: LoadDataService,
     private comparsion: DateComparsionService,
