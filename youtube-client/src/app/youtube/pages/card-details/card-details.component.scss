@@ -98,6 +98,9 @@
 }
 
 .main__info-date {
+  display: block;
+  min-width: 125px;
+  align-self: flex-end;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
