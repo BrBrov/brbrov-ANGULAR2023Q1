@@ -12,6 +12,4 @@ export class LoadDataService {
   public getData(): Observable<object> {
     return this.httpClient.get('../../assets/response.json');
   }
-
-
 }
