@@ -38,7 +38,7 @@ export class AccountComponent implements OnInit {
 
   public exit(): void {
     localStorage.removeItem('auth');
-    this.loginEvent.onLogin('Your name', false);
+    this.loginEvent.onLogin('Your',  'name', false);
     this.route.navigate(['auth/login']);
   }
 }

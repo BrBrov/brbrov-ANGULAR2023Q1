@@ -18,7 +18,8 @@ export class LoginComponent {
     if (!result) {
       this.route.navigate(['auth/wrong'], { queryParams: { error: 'unauthorized' } });
     } else {
-      this.loginEvent.onLogin(result, true);
+      const arrEnteredData: string[] = result.split(' ');
+      this.loginEvent.onLogin(arrEnteredData[0], arrEnteredData[1], true);
       this.route.navigate(['auth/success'], { queryParams:{ name: result } });
     }
   }

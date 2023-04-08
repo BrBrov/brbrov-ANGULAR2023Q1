@@ -10,9 +10,10 @@ export class LoginSetterService {
 
   public emit: Observable<AccountEvent> = this.observer.asObservable();
 
-  public onLogin(login: string, exit: boolean): void {
+  public onLogin(name: string, surname: string, exit: boolean): void {
     const accEv: AccountEvent = {
-      name: login,
+      name: name,
+      surname: surname,
       ev: exit
     };
     this.observer.next(accEv);

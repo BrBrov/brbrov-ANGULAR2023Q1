@@ -25,7 +25,6 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.registration.value);
     this.event.emit(this.registration.value as AuthData);
   }
 

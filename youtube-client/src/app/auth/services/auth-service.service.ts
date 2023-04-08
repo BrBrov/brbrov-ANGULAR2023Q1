@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -9,41 +9,74 @@ export class AuthService {
   private base: Array<AuthData>;
 
   public checkRegistrationData(data: AuthData): string {
-    const baseShowing: string = localStorage.getItem('base');
-    if (!baseShowing) {
+
+    if (!this.checkBase()) {
       this.base = [];
       this.setData(data);
       return this.authData.name;
     } else {
-      this.base = JSON.parse(localStorage.getItem('base'));
 
       const result: boolean = this.base.some((item: AuthData): boolean => {
-        if (data.name === item.name && data.surname === item.surname) return true;
+        if (data.mail === item.mail) return true;
       });
-      console.log(result);
       if (result) return '';
       this.setData(data);
-      return this.authData.name;
+      return this.authData.name + ' ' + this.authData.surname;
     }
   }
 
   public checkLoginData(data: AuthData): string {
-    console.log(data);
-    const baseShowing = localStorage.getItem('base');
-    if (!baseShowing) return '';
+    if (!this.checkBase()) return '';
 
-    const base: AuthData[] = JSON.parse(baseShowing);
-
-    const result: AuthData[] = base.filter((item: AuthData) : boolean => {
-      if (item.name === data.name && item.surname === data.surname && item.password === data.password) {
+    const result: AuthData = this.base.find((item: AuthData) : boolean => {
+      if (item.mail === data.mail && item.password === data.password) {
         return true;
       }
     });
 
-    if (!result.length || result.length > 1) return '';
+    if (!result.mail) return '';
 
-    localStorage.setItem('auth', result[0].key);
-    return result[0].name;
+    localStorage.setItem('auth', result.key);
+    return result.name + ' ' +result.surname;
+  }
+
+  public checkAuthorization(): boolean {
+    const authToken: string = localStorage.getItem('auth');
+    if (authToken) {
+      if (!this.checkBase()) {
+        return false;
+      }
+      const token = JSON.parse(authToken);
+      this.authData = this.base.find((data: AuthData): boolean => {
+        if (data.key === String(token)) return true;
+      });
+
+      if (!this.authData.mail) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  public getAccount(): AuthData {
+    if (this.checkBase()) {
+      const token = JSON.parse(localStorage.getItem('auth'));
+      return this.base.find((item: AuthData): boolean => item.key === String(token));
+    } else {
+      return { key: '', mail: '', name: '', password: '', surname: '' };
+    }
+  }
+
+  private checkBase(): boolean {
+    const baseShowing: string = localStorage.getItem('base');
+
+    if (!baseShowing) return false;
+
+    this.base = JSON.parse(localStorage.getItem('base'));
+    return true;
   }
 
   private generateToken(): string {

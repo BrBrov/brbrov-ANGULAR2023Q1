@@ -19,7 +19,8 @@ export class RegistrationComponent {
     if (!result) {
       this.route.navigate(['auth/wrong'], { queryParams: { error: 'unregister' } });
     } else {
-      this.setLogin.onLogin(result, true);
+      const arrEnteredData: string[] = result.split(' ');
+      this.setLogin.onLogin( arrEnteredData[0], arrEnteredData[1], true);
       this.route.navigate(['auth/success'], { queryParams:{ name: result } });
     }
   }

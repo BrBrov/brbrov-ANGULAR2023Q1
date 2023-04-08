@@ -23,15 +23,11 @@ export class LoginFormComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    const arrData: string[] = this.formLogin.value.login.split(' ');
-    if (arrData.length < 2) {
-      this.toWrong();
-      return;
-    }
+
     const authData: AuthData = {
-      name: arrData[0],
-      surname: arrData[1],
-      mail: '',
+      name: '',
+      surname: '',
+      mail: this.formLogin.value.login,
       password: this.formLogin.value.password
     };
     this.event.emit(authData);
@@ -39,9 +35,5 @@ export class LoginFormComponent implements OnInit {
 
   public toRegistration():void {
     this.route.navigate(['auth/registration']);
-  }
-
-  private toWrong(): void {
-    this.route.navigate(['auth/wrong'], { queryParams: { error: 'unauthorized' } });
   }
 }

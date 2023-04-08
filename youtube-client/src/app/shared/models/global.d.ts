@@ -86,15 +86,16 @@ declare global {
   };
 
   type AuthData = {
-    name: string,
-    surname: string,
-    mail: string,
-    password: string,
-    key?: string
+    'name': string,
+    'surname': string,
+    'mail': string,
+    'password': string,
+    'key'?: string
   };
 
   type AccountEvent = {
-    name: string,
-    ev: boolean
+    'name': string,
+    'surname': string,
+    'ev': boolean
   };
 }
