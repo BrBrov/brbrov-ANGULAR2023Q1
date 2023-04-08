@@ -16,7 +16,7 @@
 .main__password-wrapper {
   display: flex;
   width: 100%;
-  height: 58px;
+  height: 75px;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -40,7 +40,7 @@
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 0.7em;
+  font-size: 1.2em;
   line-height: 12px;
   color: #010226;
   background-color: #E0E0E0;
@@ -50,8 +50,14 @@
 
 .main__login-indicator,
 .main__password-indicator {
+  box-sizing: border-box;
+  padding: 2px 0 2px 5px;
   width: 100%;
-  height: 5px;
+  height: 16px;
+  font-family: 'Roboto', serif;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: #0b025b;
   background-color: #EB5757;
   border-radius: 0 0 5px 5px;
 }

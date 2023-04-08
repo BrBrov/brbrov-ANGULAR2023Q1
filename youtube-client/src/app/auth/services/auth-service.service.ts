@@ -29,12 +29,12 @@ export class AuthService {
     if (!this.checkBase()) return '';
 
     const result: AuthData = this.base.find((item: AuthData) : boolean => {
-      if (item.mail === data.mail && item.password === data.password) {
+      if (item.mail === data.mail && String(item.password) === String(data.password)) {
         return true;
       }
     });
 
-    if (!result.mail) return '';
+    if (!result) return '';
 
     localStorage.setItem('auth', result.key);
     return result.name + ' ' +result.surname;

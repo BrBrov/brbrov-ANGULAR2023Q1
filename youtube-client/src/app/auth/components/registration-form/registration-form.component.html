@@ -12,12 +12,12 @@
   <div class="main__registration-wrapper">
     <label class="main__registration-title" for="mail">E-mail</label>
     <input class="main__registration-input" id="mail" type="text" formControlName="mail">
-    <div class="main__registration-indicator" *ngIf="registration.invalid && registration.touched"></div>
+    <div class="main__registration-indicator" *ngIf="registration.invalid && registration.touched">{{mailErr}}</div>
   </div>
   <div class="main__registration-wrapper">
     <label class="main__registration-title" for="password">Password</label>
     <input class="main__registration-input" id="password" type="password" formControlName="password">
-    <div class="main__registration-indicator" *ngIf="registration.invalid && registration.touched"></div>
+    <div class="main__registration-indicator" *ngIf="registration.invalid && registration.touched">{{passErr}}</div>
   </div>
   <div class="main__registration-entrance">
     <span class="main__to-login" (click)="toLogin()">Login</span>

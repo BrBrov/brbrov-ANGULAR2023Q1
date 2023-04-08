@@ -14,7 +14,6 @@ export class LoginComponent {
 
   public showInfo(ev: AuthData):void {
     const result: string = this.authHandler.checkLoginData(ev);
-
     if (!result) {
       this.route.navigate(['auth/wrong'], { queryParams: { error: 'unauthorized' } });
     } else {

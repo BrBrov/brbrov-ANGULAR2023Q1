@@ -30,7 +30,7 @@
   </div>
   <span class="header__card-description">{{title}}</span>
 </div>
-<button class="header__card-button">
+<button class="header__card-button" [disabled]="btnDisable">
   <span class="header__card-btn" (click)="toMoreInfo()">more...</span>
 </button>
 <div class="header__card-bottom" [style.background-color]="colorBottom"></div>

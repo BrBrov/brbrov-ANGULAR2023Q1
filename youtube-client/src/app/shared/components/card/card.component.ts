@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import {AuthService} from '../../../auth/services/auth-service.service';
 
 @Component({
   selector: 'app-card',
@@ -28,7 +29,9 @@ export class CardComponent {
 
   private cardID: string;
 
-  constructor(private route: Router) {
+  btnDisable: boolean = true;
+
+  constructor(private route: Router, private authHandler: AuthService) {
   }
 
   public setID(id: string): void {
@@ -40,6 +43,7 @@ export class CardComponent {
     this.likes = this.statistic.likeCount;
     this.dislikes = this.statistic.dislikeCount;
     this.comments = this.statistic.commentCount;
+    this.btnDisable = this.authHandler.checkAuthorization();
   }
 
   public toMoreInfo(): void {

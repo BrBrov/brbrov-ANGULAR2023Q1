@@ -1,13 +1,13 @@
 <form class="main__wrapper-form" [formGroup]="formLogin" (ngSubmit)="onSubmit()">
   <div class="main__login-wrapper">
     <label class="main__login-text" for="name">Login</label>
-    <input class="main__login-input" id="name" type="text" formControlName="login">
-    <div class="main__login-indicator" *ngIf="formLogin.invalid  && formLogin.touched"></div>
+    <input class="main__login-input" id="name" type="email" formControlName="login">
+    <div class="main__login-indicator" *ngIf="formLogin.invalid">{{mailErr}}</div>
   </div>
   <div class="main__password-wrapper">
     <label class="main__login-text" for="password">Password</label>
     <input class="main__password-input" id="password" type="password" formControlName="password">
-    <div class="main__password-indicator" *ngIf="formLogin.invalid && formLogin.touched"></div>
+    <div class="main__password-indicator" *ngIf="formLogin.invalid">{{passErr}}</div>
   </div>
   <div class="main__entrance-wrapper">
     <span class="main__to-registration" (click)="toRegistration()">Registration</span>
