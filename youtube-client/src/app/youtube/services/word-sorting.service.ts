@@ -11,17 +11,17 @@ export class WordSortingService {
     const third: DataItem[] = [];
     const forth: DataItem[] = [];
 
-    const searchWord = mode.toLowerCase();
+    const searchWord: string = mode.toLowerCase();
 
-    data.items.forEach((item: DataItem) => {
-      const channelTitle = item.snippet.channelTitle.toLowerCase();
-      const title = item.snippet.title.toLowerCase();
+    data.items.forEach((item: DataItem): void => {
+      const channelTitle: string = item.snippet.channelTitle.toLowerCase();
+      const title: string = item.snippet.title.toLowerCase();
 
       if (channelTitle.includes(searchWord)) {
         first.push(item);
       } else if (title.includes(searchWord)) {
         second.push(item);
-      } else if (item.snippet.tags.includes(searchWord)) {
+      } else if (item.snippet.tags && item.snippet.tags.includes(searchWord)) {
         third.push(item);
       } else {
         forth.push(item);

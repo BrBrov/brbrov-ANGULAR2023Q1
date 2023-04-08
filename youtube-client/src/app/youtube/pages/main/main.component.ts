@@ -1,6 +1,6 @@
 import {
   Component,
-  ComponentRef,
+  ComponentRef, OnDestroy,
   OnInit,
   ViewChild,
   ViewContainerRef,
@@ -13,6 +13,7 @@ import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../../core/services/click-sorting.service';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -21,14 +22,18 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
   private data: ResponseData;
 
-  private searchString = '';
+  private searchString: string = '';
 
-  private sortString = '';
+  private sortString: string = '';
 
-  private isShowCards = false;
+  private isShowCards: boolean = false;
+
+  private activeObserver: Subscription;
+
+  private emitObserver: Subscription;
 
   @ViewChild('wrapper', { read: ViewContainerRef, static: true }) container: ViewContainerRef;
 
@@ -42,35 +47,35 @@ export class MainComponent implements OnInit {
     private active: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.active.queryParams.subscribe((query: Params) => {
+    this.activeObserver = this.active.queryParams.subscribe((query: Params) => {
 
-      this.service.getData().subscribe((response): void => {
-        this.data = <ResponseData>response;
-        if (Object.hasOwn(query, 'search')) {
-          this.searchString = query['search'].toLowerCase();
+      if (Object.hasOwn(query, 'search')) {
+        this.searchString = query['search'].toLowerCase();
 
-          this.data.items = this.data.items.filter( (item: DataItem): DataItem => {
-            if (item.snippet.title.toLowerCase().includes(this.searchString)) {
-              return item;
-            }
-            if (item.snippet.tags.includes(this.searchString)) {
-              return item;
-            }
-            if (item.snippet.channelTitle.toLowerCase().includes(this.searchString)) {
-              return item;
-            }
-          });
+      } else {
+        this.searchString = '';
 
-          this.showCards(this.data);
-        }
+      }
 
-        this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
-      });
+      this.service.getData(this.searchString).subscribe((response: ResponseData): void => {
+
+        this.data = response;
+
+        if (!this.data.items) return this.showNotFound();
+
+        this.showCards(this.data);
+
+        this.emitObserver = this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
+      })
     });
   }
 
+  ngOnDestroy(): void {
+    this.activeObserver.unsubscribe();
+    this.emitObserver.unsubscribe();
+  }
+
   public enterSearch(value: EventData): void {
-    console.log(value);
     if (value.type === 'date' || value.type === 'view' || value.type === 'word') {
       if (!this.isShowCards) {
         this.showNotFound();
@@ -87,36 +92,29 @@ export class MainComponent implements OnInit {
   }
 
   private sortByWord(mode: string): void {
-    if (!mode) {
-      this.service.getData().subscribe((response) => {
-        this.data = <ResponseData>response;
-        this.showCards(this.data);
-      });
-    } else {
       this.showCards(this.wordSorting.sortData(this.data, mode));
-    }
   }
 
   private sortByDate(mode: boolean | string): void {
-    if (mode === 'null') {
-      this.service.getData().subscribe((response) => {
-        this.data = <ResponseData>response;
+    this.service.getData(this.searchString).subscribe((response: ResponseData): void => {
+      this.data = response;
+      if (mode === 'null') {
         this.showCards(this.data);
-      });
-    } else {
-      this.showCards(this.dateSorting.sortData(this.data, mode));
-    }
+      } else {
+        this.showCards(this.dateSorting.sortData(this.data, mode));
+      }
+    }).unsubscribe();
   }
 
   private sortByCount(mode: boolean | string): void {
-    if (mode === 'null') {
-      this.service.getData().subscribe((response) => {
-        this.data = <ResponseData>response;
+    this.service.getData(this.searchString).subscribe((response: ResponseData): void => {
+      this.data = response;
+      if (mode === 'null') {
         this.showCards(this.data);
-      });
-    } else {
-      this.showCards(this.countSorting.sortData(this.data, mode));
-    }
+      } else {
+        this.showCards(this.countSorting.sortData(this.data, mode));
+      }
+    }).unsubscribe();
   }
 
   private showCards(data: ResponseData): void {
@@ -126,13 +124,13 @@ export class MainComponent implements OnInit {
   }
 
   private addCards(data: ResponseData): void {
-    const timeNow = new Date().toString();
+    const timeNow: string = new Date().toString();
     data.items.forEach((item: DataItem): void => {
       const card: ComponentRef<CardComponent> = this.container.createComponent(CardComponent);
+      card.instance.setID(item.id);
       card.instance.colorBottom = this.comparsion.comparsionDate(timeNow, item.snippet.publishedAt);
       card.instance.title = `${item.snippet.channelTitle} #${item.snippet.categoryId}`;
       card.instance.imgRef = item.snippet.thumbnails.high.url;
-      card.instance.id = item.id;
       card.instance.statistic = item.statistics;
       card.instance.searchString = this.searchString;
       card.instance.setData();

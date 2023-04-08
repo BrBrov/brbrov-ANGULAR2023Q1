@@ -1,45 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { LoadDataService } from '../../services/load-data.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import { Subscription } from 'rxjs';
+import {LoadDataService} from '../../services/load-data.service';
 
 @Component({
   selector: 'app-card-details',
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.scss']
 })
-export class CardDetailsComponent implements OnInit {
+export class CardDetailsComponent implements OnInit, OnDestroy {
 
-  public imgLink = '';
+  public imgLink: string = '';
 
-  public title = '';
+  public title: string = '';
 
-  public date = '';
+  public date: string = '';
 
-  public description = '';
+  public description: string = '';
 
-  public color = '';
+  public color: string = '';
 
-  public views = '';
+  public views: string = '';
 
-  public likes = '';
+  public likes: string = '';
 
-  public dislikes = '';
+  public dislikes: string = '';
 
-  public comments = '';
+  public comments: string = '';
 
-  public searchString = '';
+  public searchString: string = '';
+
+  private linkObserver: Subscription;
+
+  private loaderObserver: Subscription;
 
   constructor(private router: Router, private linkParam: ActivatedRoute, private loader: LoadDataService) { }
 
   ngOnInit(): void {
-    this.linkParam.queryParams.subscribe((param) => {
-      this.loader.getData().subscribe((response) => {
-        const data: ResponseData = <ResponseData>response;
+    this.linkObserver = this.linkParam.queryParams.subscribe((param: Params): void => {
+      if (!Object.hasOwn(param, 'id')) {
+        this.router.navigate(['main']);
+      } else {
+        this.loaderObserver = this.loader.getOneVideo(param['id']).subscribe((response: ResponseData): void => {
+          const data: ResponseData = response;
 
-        if (!Object.hasOwn(param, 'id')) {
-          this.router.navigate(['main']);
-        } else {
-          const card: DataItem[] = data.items.filter((item: DataItem) => item.id === param['id']);
+          const card: DataItem[] = data.items.filter((item: DataItem): boolean => item.id === param['id']);
 
           this.imgLink = card[0].snippet.thumbnails.high.url;
           this.title = `${card[0].snippet.title} #${card[0].snippet.categoryId}`;
@@ -51,16 +56,20 @@ export class CardDetailsComponent implements OnInit {
           this.comments = card[0].statistics.commentCount;
 
           if (Object.hasOwn(param, 'color')) {
-            console.log(param);
             this.color = param['color'];
           }
 
           if (Object.hasOwn(param, 'search')) {
             this.searchString = param['search'];
           }
-        }
-      });
+        });
+      }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.loaderObserver.unsubscribe();
+    this.linkObserver.unsubscribe();
   }
 
   public backToMain(): void {

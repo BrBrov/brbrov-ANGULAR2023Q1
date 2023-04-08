@@ -8,27 +8,31 @@ import { Router } from '@angular/router';
 })
 
 export class CardComponent {
-  public title = 'Video';
+  public title: string = 'Video';
 
-  public colorBottom = '#FFFFF';
+  public colorBottom: string = '#FFFFF';
 
-  public imgRef = '';
+  public imgRef: string = '';
 
-  public viewCount = '0';
+  public viewCount: string = '0';
 
-  public likes = '0';
+  public likes: string = '0';
 
-  public dislikes = '0';
+  public dislikes: string = '0';
 
-  public comments = '0';
-
-  public id = '0';
+  public comments: string = '0';
 
   public statistic: Statistics;
 
   public searchString: string;
 
+  private cardID: string;
+
   constructor(private route: Router) {
+  }
+
+  public setID(id: string): void {
+    this.cardID = id;
   }
 
   public setData() {
@@ -39,6 +43,6 @@ export class CardComponent {
   }
 
   public toMoreInfo(): void {
-    this.route.navigate(['main/card'], { queryParams: { id: this.id, color: this.colorBottom, search: this.searchString } });
+    this.route.navigate(['main/card'], { queryParams: { id: this.cardID, color: this.colorBottom, search: this.searchString } });
   }
 }

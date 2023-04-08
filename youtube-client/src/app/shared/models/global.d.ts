@@ -1,12 +1,29 @@
 export {};
 
 declare global {
+  type ResponseSearchData = {
+    'kind': string,
+    'etag': string,
+    'nextPageToken': string,
+    'regionCode': string,
+    'pageInfo': PageInfo,
+    'items': Array<SearchItem>
+  }
+
+  type SearchItem = {
+    'kind': string,
+    'etag': string,
+    'id':{
+      'kind': string,
+      'videoId': string
+    }
+  }
+
   type ResponseData = {
     'kind': string,
     'etag': string,
     'pageInfo': PageInfo,
     'items': DataItem[]
-
   };
 
   type PageInfo = {
