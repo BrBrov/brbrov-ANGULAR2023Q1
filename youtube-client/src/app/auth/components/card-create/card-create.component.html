@@ -1,0 +1,30 @@
+<form class="main___card-form" [formGroup]="newCard" (ngSubmit)="onSubmit()">
+  <div class="main___card-wrapper">
+    <label class="main__card-label" for="main__card-title">Title</label>
+    <input class="main__input-card" id="main__card-title" type="text" formControlName="title">
+    <div class="main__card-indicator" *ngIf="newCard.invalid">{{titleErr}}</div>
+  </div>
+  <div class="main___card-wrapper">
+    <label class="main__card-label" for="main__card-description">Description</label>
+    <input class="main__input-card" id="main__card-description" type="text" [required]="false" formControlName="description">
+    <div class="main__card-indicator" *ngIf="newCard.invalid">{{descriptionErr}}</div>
+  </div>
+  <div class="main___card-wrapper">
+    <label class="main__card-label" for="main__card-img">Image</label>
+    <input class="main__input-card" id="main__card-img" type="url" formControlName="image">
+    <div class="main__card-indicator" *ngIf="newCard.invalid">{{imgErr}}</div>
+  </div>
+  <div class="main___card-wrapper">
+    <label class="main__card-label" for="main__card-link">Link video</label>
+    <input class="main__input-card" id="main__card-link" type="url" formControlName="video">
+    <div class="main__card-indicator" *ngIf="newCard.invalid">{{videoErr}}</div>
+  </div>
+  <div class="main___card-wrapper">
+    <label class="main__card-label" for="main__card-date">Date</label>
+    <input class="main__input-card" id="main__card-date" type="date" formControlName="date">
+    <div class="main__card-indicator" *ngIf="newCard.invalid">{{dateErr}}</div>
+  </div>
+  <button class="main__card-create" type="submit">
+    <span class="main__text-create">Create card</span>
+  </button>
+</form>

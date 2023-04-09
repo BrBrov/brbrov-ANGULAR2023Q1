@@ -10,6 +10,8 @@ import { RegistrationFormComponent } from './components/registration-form/regist
 import { SuccessComponent } from './pages/success/success.component';
 import { AccountComponent } from './pages/account/account.component';
 import { AuthService } from './services/auth-service.service';
+import { CreateCardComponent } from './pages/create-card/create-card.component';
+import { CardCreateComponent } from './components/card-create/card-create.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AuthService } from './services/auth-service.service';
     RegistrationFormComponent,
     WrongDataComponent,
     SuccessComponent,
-    AccountComponent
+    AccountComponent,
+    CreateCardComponent,
+    CardCreateComponent
   ],
   imports: [
     CommonModule,

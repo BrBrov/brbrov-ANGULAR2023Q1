@@ -25,3 +25,19 @@ export function passwordCheck(): ValidatorFn {
     return null;
   }
 }
+
+export function urlCheck(): ValidatorFn {
+  return function (control: AbstractControl): {[key: string]: boolean} {
+    const exp: string = '((?:(?:http?|ftp)[s]*:\\/\\/)?[a-z0-9-%\\/\\&=?\\.]+\\.[a-z]{2,4}\\/?([^\\s<>\\#%"\\,\\{\\}\\\\|\\\\\\^\\[\\]`]+)?)';
+    const urlReg: RegExp = new RegExp(exp, 'gi');
+    if (!urlReg.test(control.value)) return {'url': true};
+    return null;
+  }
+}
+
+export function dateCheck(): ValidatorFn {
+  return function (control: AbstractControl): {[key: string]: boolean} {
+    if (Date.parse(control.value) > Date.now()) return {'date': true};
+    return null;
+  }
+}

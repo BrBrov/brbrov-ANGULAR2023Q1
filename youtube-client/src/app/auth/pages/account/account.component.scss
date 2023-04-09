@@ -29,9 +29,14 @@
   color: #000000;
 }
 
-.main__account-exit {
+.main__account-exit,
+.main__create-card {
   width: 150px;
   height: 30px;
+}
+
+.main__account-exit,
+.main__create-card{
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -44,12 +49,14 @@
   filter: drop-shadow(2px 0px 4px #2F80ED);
 }
 
-.main__account-exit:hover {
-  background-color: #85B9FF;
-  filter: unset;
+.main__account-exit:hover,
+.main__create-card:hover {
+  background-color: #2F80ED;
+  filter: drop-shadow(2px 0px 4px #2F80ED);
 }
 
-.main__account-exit:active {
-  background-color: #2F80ED;
+.main__account-exit:active,
+.main__create-card:active {
+  background-color: #245cc7;
   filter: drop-shadow(2px 0px 4px #2F80ED);
 }

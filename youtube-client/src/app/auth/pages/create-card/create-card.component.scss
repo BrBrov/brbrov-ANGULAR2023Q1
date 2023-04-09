@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  box-sizing: border-box;
+  padding-top: 150px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__create-window {
+  display: flex;
+  box-sizing: border-box;
+  width: 493px;
+  height: 640px;
+  padding: 37px 25px 33px 25px;
+  flex-direction: column;
+  gap: 28px;
+  background-color: #F2F2F2;
+  border-radius: 10px;
+}
+
+.main__create-title {
+  align-self: flex-start;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 27px;
+  color: #000000;
+}
+
+.main__create-block {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}

@@ -41,4 +41,9 @@ export class AccountComponent implements OnInit {
     this.loginEvent.onLogin('Your',  'name', false);
     this.route.navigate(['auth/login']);
   }
+
+  public toCreateCard(): void {
+    console.log('toCreate');
+    this.route.navigate(['auth/create']);
+  }
 }

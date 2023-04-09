@@ -5,6 +5,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { WrongDataComponent } from './pages/wrong-data/wrong-data.component';
 import { SuccessComponent } from './pages/success/success.component';
 import { AccountComponent } from './pages/account/account.component';
+import {MainGuard} from '../core/guards/main-guard.guard';
+import {CreateCardComponent} from './pages/create-card/create-card.component';
 
 const routes: Routes = [
   {
@@ -25,7 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'account',
-    component: AccountComponent
+    component: AccountComponent,
+    canActivate: [MainGuard]
+  },
+  {
+    path: 'create',
+    component: CreateCardComponent,
+    canActivate: [MainGuard]
   }
 ];
 
