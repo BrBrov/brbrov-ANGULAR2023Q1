@@ -24,7 +24,7 @@
     <input class="main__input-card" id="main__card-date" type="date" formControlName="date">
     <div class="main__card-indicator" *ngIf="newCard.invalid">{{dateErr}}</div>
   </div>
-  <button class="main__card-create" type="submit">
+  <button class="main__card-create" type="submit" [disabled]="newCard.invalid">
     <span class="main__text-create">Create card</span>
   </button>
 </form>

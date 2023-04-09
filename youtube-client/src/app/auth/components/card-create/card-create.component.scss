@@ -66,6 +66,7 @@
   margin-top: 30px;
   width: 150px;
   height: 38px;
+  color: #FFFFFF;
   border: none;
   border-radius: 5px;
   background-color: #2F80ED;
@@ -77,9 +78,8 @@
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 15.0959px;
+  font-size: 1em;
   line-height: 18px;
-  color: #FFFFFF;
 }
 
 .main__card-create:hover {
@@ -90,4 +90,10 @@
 .main__card-create:active {
   background-color: #2F80ED;
   filter: drop-shadow(2.51599px 0px 5.03198px #2F80ED);
+}
+
+.main__card-create:disabled {
+  color: #050000;
+  background-color: rgba(222, 227, 236, 0.98);
+  filter: drop-shadow(2.51599px 0px 5.03198px #5a6067);
 }
