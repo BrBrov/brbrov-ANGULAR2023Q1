@@ -1,7 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import {LoadDataService} from '../../services/load-data.service';
+import { LoadDataService } from '../../services/load-data.service';
 
 @Component({
   selector: 'app-card-details',
@@ -10,25 +10,25 @@ import {LoadDataService} from '../../services/load-data.service';
 })
 export class CardDetailsComponent implements OnInit, OnDestroy {
 
-  public imgLink: string = '';
+  public imgLink = '';
 
-  public title: string = '';
+  public title = '';
 
-  public date: string = '';
+  public date = '';
 
-  public description: string = '';
+  public description = '';
 
-  public color: string = '';
+  public color = '';
 
-  public views: string = '';
+  public views = '';
 
-  public likes: string = '';
+  public likes = '';
 
-  public dislikes: string = '';
+  public dislikes = '';
 
-  public comments: string = '';
+  public comments = '';
 
-  public searchString: string = '';
+  public searchString = '';
 
   private linkObserver: Subscription;
 

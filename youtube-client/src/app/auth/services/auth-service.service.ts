@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class AuthService {
     if (!result) return '';
 
     localStorage.setItem('auth', result.key);
-    return result.name + ' ' +result.surname;
+    return result.name + ' ' + result.surname;
   }
 
   public checkAuthorization(): boolean {

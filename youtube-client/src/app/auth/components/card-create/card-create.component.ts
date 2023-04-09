@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {dateCheck, urlCheck} from '../../services/validators.service';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { dateCheck, urlCheck } from '../../services/validators.service';
 
 @Component({
   selector: 'app-card-create',
   templateUrl: './card-create.component.html',
   styleUrls: ['./card-create.component.scss']
 })
-export class CardCreateComponent implements OnInit{
+export class CardCreateComponent implements OnInit {
   public newCard: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}

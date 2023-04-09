@@ -25,11 +25,11 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements OnInit, OnDestroy {
   private data: ResponseData;
 
-  private searchString: string = '';
+  private searchString = '';
 
-  private sortString: string = '';
+  private sortString = '';
 
-  private isShowCards: boolean = false;
+  private isShowCards = false;
 
   private activeObserver: Subscription;
 
@@ -66,7 +66,7 @@ export class MainComponent implements OnInit, OnDestroy {
         this.showCards(this.data);
 
         this.emitObserver = this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
-      })
+      });
     });
   }
 
@@ -92,7 +92,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   private sortByWord(mode: string): void {
-      this.showCards(this.wordSorting.sortData(this.data, mode));
+    this.showCards(this.wordSorting.sortData(this.data, mode));
   }
 
   private sortByDate(mode: boolean | string): void {

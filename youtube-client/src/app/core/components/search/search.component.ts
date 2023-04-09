@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, fromEvent, Subscription, tap } from 'rxjs';
 
@@ -10,9 +10,9 @@ import { debounceTime, fromEvent, Subscription, tap } from 'rxjs';
 export class SearchComponent implements AfterViewInit, OnDestroy {
   public readonly placeholder: string = 'What are you want to find out?';
 
-  public valueSearch: string = '';
+  public valueSearch = '';
 
-  @ViewChild('inputData', {read: ElementRef}) private input: ElementRef;
+  @ViewChild('inputData', { read: ElementRef }) private input: ElementRef;
 
   private observer: Subscription;
 

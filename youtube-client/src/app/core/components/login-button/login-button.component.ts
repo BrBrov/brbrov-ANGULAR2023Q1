@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginSetterService } from '../../services/login-setter.service';
-import {AuthService} from '../../../auth/services/auth-service.service';
+import { AuthService } from '../../../auth/services/auth-service.service';
 
 @Component({
   selector: 'app-login-button',
@@ -9,9 +9,9 @@ import {AuthService} from '../../../auth/services/auth-service.service';
   styleUrls: ['./login-button.component.scss']
 })
 export class LoginButtonComponent implements OnInit {
-  public login: string = 'Your login';
+  public login = 'Your login';
 
-  private mode: boolean = false;
+  private mode = false;
 
   constructor(private route: Router, private loginEvent: LoginSetterService, private authHandler: AuthService) {}
 
@@ -20,7 +20,7 @@ export class LoginButtonComponent implements OnInit {
     if (this.authHandler.checkAuthorization()) {
       const authData: AuthData = this.authHandler.getAccount();
 
-      this.login = authData.name + ' ' +authData.surname;
+      this.login = authData.name + ' ' + authData.surname;
       this.mode = true;
 
     } else {

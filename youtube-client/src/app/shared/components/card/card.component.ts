@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from '../../../auth/services/auth-service.service';
+import { AuthService } from '../../../auth/services/auth-service.service';
 
 @Component({
   selector: 'app-card',
@@ -9,19 +9,19 @@ import {AuthService} from '../../../auth/services/auth-service.service';
 })
 
 export class CardComponent {
-  public title: string = 'Video';
+  public title = 'Video';
 
-  public colorBottom: string = '#FFFFF';
+  public colorBottom = '#FFFFF';
 
-  public imgRef: string = '';
+  public imgRef = '';
 
-  public viewCount: string = '0';
+  public viewCount = '0';
 
-  public likes: string = '0';
+  public likes = '0';
 
-  public dislikes: string = '0';
+  public dislikes = '0';
 
-  public comments: string = '0';
+  public comments = '0';
 
   public statistic: Statistics;
 
@@ -29,7 +29,7 @@ export class CardComponent {
 
   private cardID: string;
 
-  btnDisable: boolean = true;
+  btnDisable = true;
 
   constructor(private route: Router, private authHandler: AuthService) {
   }

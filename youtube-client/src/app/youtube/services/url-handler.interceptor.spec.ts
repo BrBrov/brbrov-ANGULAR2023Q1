@@ -6,7 +6,7 @@ describe('UrlHandlerInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
       UrlHandlerInterceptor
-      ]
+    ]
   }));
 
   it('should be created', () => {

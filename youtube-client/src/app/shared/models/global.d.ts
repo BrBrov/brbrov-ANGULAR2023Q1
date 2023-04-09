@@ -8,7 +8,7 @@ declare global {
     'regionCode': string,
     'pageInfo': PageInfo,
     'items': Array<SearchItem>
-  }
+  };
 
   type SearchItem = {
     'kind': string,
@@ -17,7 +17,7 @@ declare global {
       'kind': string,
       'videoId': string
     }
-  }
+  };
 
   type ResponseData = {
     'kind': string,

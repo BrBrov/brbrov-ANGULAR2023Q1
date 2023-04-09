@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UrlHandlerInterceptor implements HttpInterceptor {
 
-  private readonly apiKey: string = 'AIzaSyAleKLJ-YHJvCn2smnBp-P5O-gGVImL9us'
+  private readonly apiKey: string = 'AIzaSyAleKLJ-YHJvCn2smnBp-P5O-gGVImL9us';
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<ResponseSearchData | ResponseData>, next: HttpHandler): Observable<HttpEvent<ResponseSearchData | ResponseData>> {
     const link: string = request.url;
-    const req: HttpRequest<any> = request.clone({url: `${link}&key=${this.apiKey}`});
+    const req: HttpRequest<ResponseSearchData | ResponseData> = request.clone({ url: `${link}&key=${this.apiKey}` });
     return next.handle(req);
   }
 }
