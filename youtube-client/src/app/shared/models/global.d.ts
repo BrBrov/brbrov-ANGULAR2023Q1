@@ -98,4 +98,16 @@ declare global {
     'surname': string,
     'ev': boolean
   };
+
+  type Card = {
+    title: string,
+    description: string,
+    image: string,
+    video: string,
+    date: string,
+    likes?: string,
+    dislikes?: string,
+    comments?: string,
+    view?: string
+  }
 }

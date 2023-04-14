@@ -9,6 +9,10 @@ import { YoutubeModule } from './youtube/youtube.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { LoginSetterService } from './core/services/login-setter.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import {YoutubeEffect} from './redux/effects/youtube.effect';
+import { reducers} from './redux/reducers/map.reducer';
 
 
 @NgModule({
@@ -22,7 +26,9 @@ import { LoginSetterService } from './core/services/login-setter.service';
     CoreModule,
     YoutubeModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([YoutubeEffect])
   ],
   bootstrap: [AppComponent],
   providers: [ClickSortingService, LoginSetterService]

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { dateCheck, urlCheck } from '../../services/validators.service';
+import {Store} from '@ngrx/store';
+import {addCard} from '../../../redux/actions/cards.action';
+import {selectorUserCards} from '../../../redux/selectors/cards.selector';
+
 
 @Component({
   selector: 'app-card-create',
@@ -10,7 +14,7 @@ import { dateCheck, urlCheck } from '../../services/validators.service';
 export class CardCreateComponent implements OnInit {
   public newCard: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private state: Store) {}
 
   public ngOnInit(): void {
     this.newCard = this.formBuilder.group({
@@ -58,6 +62,7 @@ export class CardCreateComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    console.log(this.newCard);
+    this.state.dispatch(addCard({card: this.newCard.value}));
+    this.state.select(selectorUserCards).subscribe( c => console.log(c)).unsubscribe();
   }
 }

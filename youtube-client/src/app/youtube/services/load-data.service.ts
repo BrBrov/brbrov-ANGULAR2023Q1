@@ -15,9 +15,9 @@ export class LoadDataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getData(seachString = ''): Observable<ObservedValueOf<Observable<ResponseData>>> {
+  public getData(seachString: string = ''): Observable<ObservedValueOf<Observable<ResponseData>>> {
     return this.getSearch(seachString).pipe(
-      mergeMap((data) => this.getVideo(data))
+      mergeMap((data: string) => this.getVideo(data))
     );
   }
 

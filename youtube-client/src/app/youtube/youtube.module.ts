@@ -10,6 +10,7 @@ import { WordSortingService } from './services/word-sorting.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { CardDetailsComponent } from './pages/card-details/card-details.component';
 import { UrlHandlerInterceptor } from './services/url-handler.interceptor';
+import {ConvertDataService} from './services/convert-data.service';
 
 @NgModule({
   declarations: [MainComponent, CardDetailsComponent],
@@ -26,6 +27,7 @@ import { UrlHandlerInterceptor } from './services/url-handler.interceptor';
     DateSortingService,
     LoadDataService,
     WordSortingService,
+    ConvertDataService,
     { provide: HTTP_INTERCEPTORS, useClass: UrlHandlerInterceptor, multi: true }]
 })
 export class YoutubeModule {}
