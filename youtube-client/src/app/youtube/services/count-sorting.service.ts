@@ -5,26 +5,19 @@ import { Injectable } from '@angular/core';
 })
 export class CountSortingService {
 
-  public sortData(data: ResponseData, mode: boolean | string): ResponseData {
-    const newItems: DataItem[] = mode ? this.countASC(data.items) : this.countDESC(data.items);
-
-    return {
-      'kind': data.kind,
-      'etag': data.etag,
-      'pageInfo': data.pageInfo,
-      'items': newItems
-    };
+  public sortData(data: Card[], mode: boolean | string): Card[] {
+    return mode ? this.countASC(data) : this.countDESC(data);
   }
 
-  private countASC(items: DataItem[]): Array<DataItem> {
-    return items.sort((item1: DataItem, item2: DataItem) => {
-      return Number(item1.statistics.viewCount) - Number(item2.statistics.viewCount);
+  private countASC(items: Card[]): Card[] {
+    return items.sort((item1: Card, item2: Card) => {
+      return Number(item1.view) - Number(item2.view);
     });
   }
 
-  private countDESC(items: DataItem[]): Array<DataItem> {
-    return items.sort((item1: DataItem, item2: DataItem) => {
-      return Number(item2.statistics.viewCount) - Number(item1.statistics.viewCount);
+  private countDESC(items: Card[]): Card[] {
+    return items.sort((item1: Card, item2: Card) => {
+      return Number(item2.view) - Number(item1.view);
     });
   }
 }

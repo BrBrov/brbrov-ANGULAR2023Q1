@@ -112,7 +112,7 @@
 .main__info-description {
   display: flex;
   width: 100%;
-  min-height: 250px;
+  max-height: 250px;
   flex-direction: column;
   justify-content: flex-start;
   gap: 4px;
@@ -129,7 +129,7 @@
 
 .main__info-text {
   display: -webkit-box;
-  height: 195px;
+  max-height: 195px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -145,6 +145,8 @@
 .main__social-block {
   display: flex;
   min-width: 202px;
+  box-sizing: border-box;
+  padding-top: 25px;
   height: 13px;
   flex-direction: row;
   justify-content: space-between;

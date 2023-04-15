@@ -4,30 +4,23 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DateSortingService {
-  public sortData(data: ResponseData, mode: boolean | string | null): ResponseData {
+  public sortData(data: Card[], mode: boolean | string | null): Card[] {
 
-    const dataArray: DataItem[] = mode ? this.sortASC(data.items) : this.sortDESC(data.items);
-
-    return  {
-      'kind': data.kind,
-      'etag': data.etag,
-      'pageInfo': data.pageInfo,
-      'items': dataArray
-    };
+    return mode ? this.sortASC(data) : this.sortDESC(data);
   }
 
-  private sortDESC(dataArray: DataItem[]): Array<DataItem> {
-    return dataArray.sort((data1: DataItem, data2: DataItem) => {
-      const time1: number = Date.parse(data1.snippet.publishedAt);
-      const time2: number = Date.parse(data2.snippet.publishedAt);
+  private sortDESC(dataArray : Card[]): Card[] {
+    return dataArray.sort((data1: Card, data2: Card) => {
+      const time1: number = Date.parse(data1.date);
+      const time2: number = Date.parse(data2.date);
       return time2 - time1;
     });
   }
 
-  private sortASC(dataArray: DataItem[]): Array<DataItem> {
-    return dataArray.sort((data1: DataItem, data2: DataItem) => {
-      const time1: number = Date.parse(data1.snippet.publishedAt);
-      const time2: number = Date.parse(data2.snippet.publishedAt);
+  private sortASC(dataArray: Card[]): Card[] {
+    return dataArray.sort((data1: Card, data2: Card) => {
+      const time1: number = Date.parse(data1.date);
+      const time2: number = Date.parse(data2.date);
       return time1 - time2;
     });
   }

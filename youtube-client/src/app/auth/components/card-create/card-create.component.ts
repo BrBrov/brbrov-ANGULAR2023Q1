@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { dateCheck, urlCheck } from '../../services/validators.service';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {dateCheck, urlCheck} from '../../services/validators.service';
 import {Store} from '@ngrx/store';
 import {addCard} from '../../../redux/actions/cards.action';
 import {selectorUserCards} from '../../../redux/selectors/cards.selector';
+
 
 
 @Component({
@@ -14,7 +15,8 @@ import {selectorUserCards} from '../../../redux/selectors/cards.selector';
 export class CardCreateComponent implements OnInit {
   public newCard: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private state: Store) {}
+  constructor(private formBuilder: FormBuilder, private state: Store) {
+  }
 
   public ngOnInit(): void {
     this.newCard = this.formBuilder.group({
@@ -62,7 +64,23 @@ export class CardCreateComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.state.dispatch(addCard({card: this.newCard.value}));
-    this.state.select(selectorUserCards).subscribe( c => console.log(c)).unsubscribe();
+    const card: Card = Object.assign({
+      dislikes: '0',
+      likes: '0',
+      view: '0',
+      comments: '0',
+      id: ''
+    }, this.newCard.value);
+
+    const date: Date = new Date(card.date);
+    card.date = date.toISOString();
+
+    this.state.select(selectorUserCards).subscribe((items) => {
+        if (!items.state.some((item) => item.video === card.video)) {
+          card.id = `#customcard ${items.state.length + 1}`;
+          this.state.dispatch(addCard({card: card}));
+        }
+      }
+    ).unsubscribe();
   }
 }

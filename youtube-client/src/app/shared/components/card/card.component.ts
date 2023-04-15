@@ -9,19 +9,19 @@ import { AuthService } from '../../../auth/services/auth-service.service';
 })
 
 export class CardComponent {
-  public title = 'Video';
+  public title: string = 'Video';
 
-  public colorBottom = '#FFFFF';
+  public colorBottom: string = '#FFFFF';
 
-  public imgRef = '';
+  public imgRef: string = '';
 
-  public viewCount = '0';
+  public viewCount: string = '0';
 
-  public likes = '0';
+  public likes: string = '0';
 
-  public dislikes = '0';
+  public dislikes: string = '0';
 
-  public comments = '0';
+  public comments: string = '0';
 
   public statistic: Statistics;
 
@@ -29,7 +29,7 @@ export class CardComponent {
 
   private cardID: string;
 
-  btnDisable = true;
+  btnDisable: boolean = true;
 
   constructor(private route: Router, private authHandler: AuthService) {
   }
@@ -38,7 +38,7 @@ export class CardComponent {
     this.cardID = id;
   }
 
-  public setData() {
+  public setData(): void {
     this.viewCount = this.statistic.viewCount;
     this.likes = this.statistic.likeCount;
     this.dislikes = this.statistic.dislikeCount;

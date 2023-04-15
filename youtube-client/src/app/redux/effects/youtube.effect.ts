@@ -28,6 +28,7 @@ export class YoutubeEffect {
 
   private getErrCard(): Card[] {
     const card: Card = {
+      id: 'null',
       comments: '',
       date: '',
       description: '',

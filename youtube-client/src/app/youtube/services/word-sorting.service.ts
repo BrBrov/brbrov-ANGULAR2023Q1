@@ -5,34 +5,27 @@ import { Injectable } from '@angular/core';
 })
 export class WordSortingService {
 
-  public sortData(data: ResponseData, mode: string): ResponseData {
-    const first: DataItem[] = [];
-    const second: DataItem[] = [];
-    const third: DataItem[] = [];
-    const forth: DataItem[] = [];
+  public sortData(data: Card[], mode: string): Card[] {
+    const first: Card[] = [];
+    const second: Card[] = [];
+    const third: Card[] = [];
 
     const searchWord: string = mode.toLowerCase();
 
-    data.items.forEach((item: DataItem): void => {
-      const channelTitle: string = item.snippet.channelTitle.toLowerCase();
-      const title: string = item.snippet.title.toLowerCase();
 
-      if (channelTitle.includes(searchWord)) {
+    data.forEach((item: Card): void => {
+      const title: string = item.title.toLowerCase();
+      const description: string = item.description.toLowerCase();
+
+      if (title.includes(searchWord)) {
         first.push(item);
-      } else if (title.includes(searchWord)) {
+      } else if (description.includes(searchWord)) {
         second.push(item);
-      } else if (item.snippet.tags && item.snippet.tags.includes(searchWord)) {
-        third.push(item);
       } else {
-        forth.push(item);
+        third.push(item);
       }
     });
 
-    return {
-      'kind': data.kind,
-      'etag': data.etag,
-      'pageInfo': data.pageInfo,
-      'items': first.concat(second.concat(third.concat(forth)))
-    };
+    return [...first, ...second, ...third]
   }
 }
