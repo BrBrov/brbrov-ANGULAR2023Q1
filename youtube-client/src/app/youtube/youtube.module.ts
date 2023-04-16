@@ -10,7 +10,7 @@ import { WordSortingService } from './services/word-sorting.service';
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { CardDetailsComponent } from './pages/card-details/card-details.component';
 import { UrlHandlerInterceptor } from './services/url-handler.interceptor';
-import {ConvertDataService} from './services/convert-data.service';
+import { ConvertDataService } from './services/convert-data.service';
 
 @NgModule({
   declarations: [MainComponent, CardDetailsComponent],

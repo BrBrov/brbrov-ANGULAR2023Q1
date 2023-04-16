@@ -26,6 +26,6 @@ export class WordSortingService {
       }
     });
 
-    return [...first, ...second, ...third]
+    return [...first, ...second, ...third];
   }
 }

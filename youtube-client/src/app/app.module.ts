@@ -11,8 +11,8 @@ import { AuthModule } from './auth/auth.module';
 import { LoginSetterService } from './core/services/login-setter.service';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import {YoutubeEffect} from './redux/effects/youtube.effect';
-import { reducers} from './redux/reducers/map.reducer';
+import { YoutubeEffect } from './redux/effects/youtube.effect';
+import { reducers } from './redux/reducers/map.reducer';
 
 
 @NgModule({

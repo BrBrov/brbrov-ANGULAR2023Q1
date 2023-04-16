@@ -1,5 +1,5 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {UserCards} from '../state.models';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { UserCards } from '../state.models';
 
 export const featureUserCards = createFeatureSelector<UserCards>('cards');
 

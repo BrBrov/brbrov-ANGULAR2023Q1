@@ -37,6 +37,4 @@ export class SearchComponent implements AfterViewInit, OnDestroy {
   public onClick(): void {
     this.router.navigate(['main'], { queryParams: { search: this.valueSearch } });
   }
-
-
 }

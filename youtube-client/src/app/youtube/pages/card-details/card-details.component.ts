@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { LoadDataService } from '../../services/load-data.service';
+import { StoreDataService } from '../../services/store-data.service';
 
 @Component({
   selector: 'app-card-details',
@@ -34,33 +34,30 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
 
   private loaderObserver: Subscription;
 
-  constructor(private router: Router, private linkParam: ActivatedRoute, private loader: LoadDataService) { }
+  constructor(private router: Router, private linkParam: ActivatedRoute, private store: StoreDataService) { }
 
   ngOnInit(): void {
     this.linkObserver = this.linkParam.queryParams.subscribe((param: Params): void => {
       if (!Object.hasOwn(param, 'id')) {
         this.router.navigate(['main']);
       } else {
-        this.loaderObserver = this.loader.getOneVideo(param['id']).subscribe((response: ResponseData): void => {
-          const data: ResponseData = response;
 
-          const card: DataItem[] = data.items.filter((item: DataItem): boolean => item.id === param['id']);
+        if (Object.hasOwn(param, 'search')) {
+          this.searchString = param['search'];
+        }
 
-          this.imgLink = card[0].snippet.thumbnails.high.url;
-          this.title = `${card[0].snippet.title} #${card[0].snippet.categoryId}`;
-          this.date = new Date(card[0].snippet.publishedAt).toString();
-          this.description = card[0].snippet.description;
-          this.views = card[0].statistics.viewCount;
-          this.likes = card[0].statistics.likeCount;
-          this.dislikes = card[0].statistics.dislikeCount;
-          this.comments = card[0].statistics.commentCount;
+        this.loaderObserver = this.store.getCard(param['id']).subscribe((card: Card): void => {
+          this.imgLink = card.image;
+          this.title = card.title;
+          this.date = new Date(card.date).toString();
+          this.description = card.description;
+          this.views = card.view;
+          this.likes = card.likes;
+          this.dislikes = card.dislikes;
+          this.comments = card.comments;
 
           if (Object.hasOwn(param, 'color')) {
             this.color = param['color'];
-          }
-
-          if (Object.hasOwn(param, 'search')) {
-            this.searchString = param['search'];
           }
         });
       }

@@ -12,13 +12,11 @@ import { CountSortingService } from '../../services/count-sorting.service';
 import { WordSortingService } from '../../services/word-sorting.service';
 import { ClickSortingService } from '../../../core/services/click-sorting.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {map, mergeMap, Observable, Subscription, switchMap, tap} from 'rxjs';
-import {Store} from '@ngrx/store';
-import {addVideo} from '../../../redux/actions/youtube.action';
-import {selectorYouTube} from '../../../redux/selectors/youtube.selector';
-import {UserCards, YouTubeState} from '../../../redux/state.models';
-import {selectorUserCards} from '../../../redux/selectors/cards.selector';
-import {CardComponent} from '../../../shared/components/card/card.component';
+import { Subscription } from 'rxjs';
+import { CardComponent } from '../../../shared/components/card/card.component';
+import { StoreDataService } from '../../services/store-data.service';
+import { Store } from '@ngrx/store';
+import { addVideo } from '../../../redux/actions/youtube.action';
 
 
 @Component({
@@ -30,9 +28,9 @@ import {CardComponent} from '../../../shared/components/card/card.component';
 export class MainComponent implements OnInit, OnDestroy {
   private data: Card[] = [];
 
-  private searchString: string = '';
+  private searchString = '';
 
-  private sortString = '';
+  private sortString  = '';
 
   private isShowCards = false;
 
@@ -50,11 +48,11 @@ export class MainComponent implements OnInit, OnDestroy {
     private clickSortMenu: ClickSortingService,
     private route: Router,
     private active: ActivatedRoute,
+    private storeService: StoreDataService,
     private store: Store) {}
 
   ngOnInit(): void {
-    this.activeObserver = this.active.queryParams.subscribe((query: Params) => {
-
+    this.activeObserver = this.active.queryParams.subscribe((query: Params): void => {
 
       if (Object.hasOwn(query, 'search')) {
         this.searchString = query['search'].toLowerCase();
@@ -62,10 +60,11 @@ export class MainComponent implements OnInit, OnDestroy {
       } else {
         this.searchString = '';
       }
+      this.store.dispatch(addVideo({ search: this.searchString }));
 
-      this.getData().subscribe((cardsArray: Card[]): void => {
+      this.storeService.getData().subscribe((cardsArray: Card[]): void => {
         this.data = cardsArray;
-        console.log(this.data);
+
         if (!this.data.length) {
           this.showNotFound();
         } else {
@@ -73,12 +72,14 @@ export class MainComponent implements OnInit, OnDestroy {
         }
         this.emitObserver = this.clickSortMenu.emit.subscribe((ev: EventData) => this.enterSearch(ev));
       }).unsubscribe();
+
+
     });
   }
 
   ngOnDestroy(): void {
     this.activeObserver.unsubscribe();
-    // this.emitObserver.unsubscribe();
+    this.emitObserver.unsubscribe();
   }
 
   public enterSearch(value: EventData): void {
@@ -102,7 +103,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   private sortByDate(mode: boolean | string): void {
-    this.getData(this.searchString).subscribe((data: Card[]): void => {
+    this.storeService.getData().subscribe((data: Card[]): void => {
       this.data = data;
 
       if (mode === 'null') {
@@ -114,7 +115,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   private sortByCount(mode: boolean | string): void {
-    this.getData(this.searchString).subscribe((data: Card[]): void => {
+    this.storeService.getData().subscribe((data: Card[]): void => {
       this.data = data;
 
       if (mode === 'null') {
@@ -153,35 +154,4 @@ export class MainComponent implements OnInit, OnDestroy {
   private showNotFound(): void {
     this.route.navigate(['fail']);
   }
-
-  private getData(search: string = ''): Observable<Card[]> {
-
-    return this.getUserCardsData().pipe(
-      map((items: Card[]) => this.getYoutubeData(search).pipe(
-        map((videos:Card[]) => [...items, ...videos])
-      )),
-      switchMap((data: Observable<Card[]>) => data)
-    )
-  }
-  private getYoutubeData(search: string): Observable<Card[]> {
-    return this.store.select(selectorYouTube).pipe(
-      tap((item: YouTubeState): void => {
-        if (!item.state.length) {
-          this.store.dispatch(addVideo({search: search}));
-        }
-      }),
-      mergeMap(() => this.store.select(selectorYouTube)),
-      map((items: YouTubeState) => items.state)
-    )
-  }
-
-  private getUserCardsData(): Observable<Card[]> {
-    return this.store.select(selectorUserCards).pipe(
-      map((items: UserCards) => {
-        // console.log('†††');
-        return items.state;
-      }),
-    )
-  }
-
 }

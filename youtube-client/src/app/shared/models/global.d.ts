@@ -110,5 +110,5 @@ declare global {
     dislikes?: string,
     comments?: string,
     view?: string
-  }
+  };
 }

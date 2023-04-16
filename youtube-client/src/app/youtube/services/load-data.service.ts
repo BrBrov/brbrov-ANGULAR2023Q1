@@ -15,14 +15,10 @@ export class LoadDataService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public getData(seachString: string = ''): Observable<ObservedValueOf<Observable<ResponseData>>> {
-    return this.getSearch(seachString).pipe(
+  public getData(searchString = ''): Observable<ObservedValueOf<Observable<ResponseData>>> {
+    return this.getSearch(searchString).pipe(
       mergeMap((data: string) => this.getVideo(data))
     );
-  }
-
-  public getOneVideo(id: string): Observable<ResponseData> {
-    return this.getVideo(id);
   }
 
   private getSearch(search: string): Observable<string> {
